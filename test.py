@@ -28,8 +28,8 @@ def load_dna_with_window(filepath: str, dataset_type: str, window_size: int = 5)
 
 
 # Przykład użycia:
-donor_file = "/mnt/data/spliceDTrainKIS.dat"
-acceptor_file = "/mnt/data/spliceATrainKIS.dat"
+donor_file = "spliceDTrainKIS.dat"
+acceptor_file = "spliceATrainKIS.dat"
 
 try:
     donor_examples = load_dna_with_window(donor_file, "donor", window_size=5)
