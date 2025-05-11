@@ -1,89 +1,44 @@
-import re
-from typing import List, Tuple, Optional
+from typing import List, Tuple
 
-# Typ danych: (etykieta, sekwencja, typ zbioru)
-Example = Tuple[int, str, str]
+Example = Tuple[int, str, str, str]  # (label, window_seq, dataset_type, full_seq)
 
-def load_dna_dataset(filepath: str, dataset_type: str) -> List[Example]:
+def load_dna_with_window(filepath: str, dataset_type: str, window_size: int = 5) -> List[Example]:
     """
-    Wczytuje plik z danymi DNA (donory lub akceptory).
-    
-    :param filepath: ścieżka do pliku
-    :param dataset_type: "donor" lub "acceptor"
-    :return: lista przykładów (etykieta, sekwencja, typ)
+    Wczytuje plik z sekwencjami DNA. Wyciąga okno wokół granicy intron-ekson.
+
+    :param filepath: Ścieżka do pliku z danymi
+    :param dataset_type: Typ zbioru ("donor" lub "acceptor")
+    :param window_size: liczba znaków po lewej i prawej stronie pozycji granicznej
+    :return: lista krotek (etykieta, okno sekwencji, typ, pełna sekwencja)
     """
     examples = []
-    with open(filepath, "r") as file:
-        lines = file.read().splitlines()
-        lines = lines[1:]  # pomijamy pierwszą linię
+    with open(filepath, "r") as f:
+        lines = f.read().splitlines()
+        boundary_pos = int(lines[0].strip())  # pozycja graniczna
+        lines = lines[1:]  # reszta to dane
 
         for i in range(0, len(lines), 2):
             label = int(lines[i].strip())
-            sequence = lines[i + 1].strip().upper()
-            examples.append((label, sequence, dataset_type))
+            full_seq = lines[i + 1].strip().upper()
+            start = max(0, boundary_pos - window_size)
+            end = boundary_pos + window_size
+            window_seq = full_seq[start:end]
+            examples.append((label, window_seq, dataset_type, full_seq))
     return examples
 
-def load_all_dna_datasets(donor_path: Optional[str] = None,
-                          acceptor_path: Optional[str] = None) -> List[Example]:
-    """
-    Ładuje dane z plików donorów i/lub akceptorów, jeśli zostały podane.
 
-    :param donor_path: ścieżka do pliku donorów
-    :param acceptor_path: ścieżka do pliku akceptorów
-    :return: lista wszystkich przykładów z etykietą typu
-    """
-    all_examples = []
-
-    if donor_path:
-        all_examples += load_dna_dataset(donor_path, "donor")
-    if acceptor_path:
-        all_examples += load_dna_dataset(acceptor_path, "acceptor")
-
-    return all_examples
-
-def load_regex_patterns(filepath: str) -> List[str]:
-    """
-    Wczytuje wyrażenia regularne z pliku tekstowego.
-    Każda linia to jedno wyrażenie.
-
-    :param filepath: ścieżka do pliku z regexami
-    :return: lista wzorców jako stringi
-    """
-    with open(filepath, "r") as file:
-        return [line.strip() for line in file if line.strip()]
-
-def regex_matches_at_position(sequence: str, pattern: str, position: int) -> bool:
-    """
-    Sprawdza, czy regex pasuje do fragmentu sekwencji DNA na podanej pozycji.
-
-    :param sequence: sekwencja DNA
-    :param pattern: wyrażenie regularne
-    :param position: pozycja początkowa
-    :return: True jeśli pasuje, False w przeciwnym razie
-    """
-    end = position + len(pattern)
-    if end > len(sequence):
-        return False
-    subseq = sequence[position:end]
-    return re.fullmatch(pattern, subseq) is not None
-
-# Testujemy funkcje wczytujące
-donor_path = "spliceDTrainKIS.dat"
-acceptor_path = "spliceATrainKIS.dat"
-regex_file = "regex_patterns.txt"
+# Przykład użycia:
+donor_file = "/mnt/data/spliceDTrainKIS.dat"
+acceptor_file = "/mnt/data/spliceATrainKIS.dat"
 
 try:
-    examples = load_all_dna_datasets(donor_path, acceptor_path)
-    print(f"Wczytano {len(examples)} przykładów")
+    donor_examples = load_dna_with_window(donor_file, "donor", window_size=5)
+    acceptor_examples = load_dna_with_window(acceptor_file, "acceptor", window_size=5)
 
-    regex_list = load_regex_patterns(regex_file)
-    print(f"Wczytano {len(regex_list)} regexów")
-
-    # Przykładowe sprawdzenie dopasowania
-    test_seq = examples[0][1]
-    print("Sekwencja:", test_seq)
-    for r in regex_list:
-        print(f"Regex '{r}' na pozycji 3:", regex_matches_at_position(test_seq, r, 3))
+    print(f"Wczytano {len(donor_examples)} przykładów donorów")
+    print(f"Wczytano {len(acceptor_examples)} przykładów akceptorów")
+    print("Przykład donora:", donor_examples[0])
+    print("Przykład akceptora:", acceptor_examples[0])
 
 except FileNotFoundError as e:
     print("Brak pliku:", e)
