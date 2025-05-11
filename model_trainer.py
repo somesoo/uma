@@ -26,7 +26,7 @@ def train_and_save_model(X, y, model_path: str):
     X_trainval, X_test, y_trainval, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     X_train, X_val, y_train, y_val = train_test_split(X_trainval, y_trainval, test_size=0.2, random_state=42)
 
-    clf = DecisionTreeClassifier(max_depth=5, random_state=42)
+    clf = DecisionTreeClassifier(max_depth=5, random_state=32)
     clf.fit(X_train, y_train)
 
     print("Validation score:", clf.score(X_val, y_val))
