@@ -2,7 +2,7 @@ import joblib
 from typing import List
 import re
 
-MODEL_PATH = "decision_tree_model.joblib"
+MODEL_PATH = "output/decision_tree_model.joblib"
 
 def load_model():
     return joblib.load(MODEL_PATH)

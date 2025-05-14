@@ -32,3 +32,4 @@ def train_and_save_model(X, y, model_path: str):
     print("Validation score:", clf.score(X_val, y_val))
     joblib.dump(clf, model_path)
     print(f"Model saved to {model_path}")
+    
