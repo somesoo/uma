@@ -74,8 +74,8 @@ def train_and_save_model(
     )
     clf.fit(X_train, y_train)
 
-    # joblib.dump(clf, model_path)
-    # print(f"Model saved to {model_path}\n")
+    joblib.dump(clf, model_path)
+    print(f"Model saved to {model_path}\n")
 
     print("=== Validation set ===")
     evaluate(clf, X_val, y_val)

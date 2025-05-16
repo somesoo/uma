@@ -1,81 +1,83 @@
-from src.data_loader import load_dna_with_window
-from src.regex_generator import save_kgram_regexes_to_file, load_regex_patterns
-from src.model_trainer import extract_features, train_and_save_model
-from collections import Counter
-
-
+import argparse
 import numpy as np
 from collections import Counter
-
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
 
 from src.data_loader import load_dna_with_window
 from src.regex_generator import load_regex_patterns
 from src.model_trainer import extract_features, evaluate
 from src.decision_tree.model import DecisionTree
 
-# if __name__ == "__main__":
-#     # Wczytaj dane
-#     donor_examples = load_dna_with_window("input_data/spliceDTrainKIS.dat", "donor", window_size=5)
-#     acceptor_examples = load_dna_with_window("input_data/spliceATrainKIS.dat", "acceptor", window_size=5)
-#     all_examples = donor_examples + acceptor_examples
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
 
-#     # Generuj regexy długości 3
-#     # save_kgram_regexes_to_file(3, "input_data/regex_patterns.txt")
-#     regex_list = load_regex_patterns("input_data/regex_patterns.txt")
 
-#     # Pozycje testowe
-#     positions = [7, 68]  # zgodnie z poleceniem
+def parse_args():
+    parser = argparse.ArgumentParser(description="Run DNA classifier using a selected decision tree implementation.")
 
-#     # Ekstrakcja cech
-#     X, y = extract_features(acceptor_examples, regex_list, positions)
-#     print("Class balance:", Counter(y))
-#     # Trening i zapis modelu
-#     train_and_save_model(X, y, model_path="output/acceptor_decision_tree_model.joblib")
+    parser.add_argument("--data_type", choices=["donor", "acceptor"], required=True,
+                        help="Type of input data: 'donor' or 'acceptor'")
+    parser.add_argument("--data_path", required=True,
+                        help="Path to the DNA data file")
+    parser.add_argument("--regex_path", default="input_data/regex_patterns.txt",
+                        help="Path to the regex patterns file")
+    parser.add_argument("--window_size", type=int, default=5,
+                        help="Window size for extracting DNA sequence")
+    parser.add_argument("--positions", nargs="+", type=int, default=[7, 68],
+                        help="Sequence positions for regex feature extraction")
+    parser.add_argument("--max_depth", type=int, default=10,
+                        help="Maximum depth of the decision tree")
+    parser.add_argument("--min_samples", type=int, default=2,
+                        help="Minimum number of samples to split (for custom implementation)")
+    parser.add_argument("--test_size", type=float, default=0.2,
+                        help="Fraction of data used for testing (between 0 and 1)")
+    parser.add_argument("--random_state", type=int, default=42,
+                        help="Random seed for reproducibility")
+    parser.add_argument("--impl", choices=["custom", "sklearn"], default="custom",
+                        help="Decision tree implementation to use: 'custom' or 'sklearn'")
+
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
+
+    # 1. Load DNA data
+    examples = load_dna_with_window(args.data_path, args.data_type, args.window_size)
+    regexes = load_regex_patterns(args.regex_path)
+    X, y = extract_features(examples, regexes, args.positions)
+    print("Class distribution:", Counter(y))
+
+    # 2. Split into train/val/test
+    X_trval, X_test, y_trval, y_test = train_test_split(
+        X, y, test_size=args.test_size, random_state=args.random_state, stratify=y
+    )
+    X_train, X_val, y_train, y_val = train_test_split(
+        X_trval, y_trval, test_size=args.test_size, random_state=args.random_state, stratify=y_trval
+    )
+
+    # 3. Select model implementation
+    if args.impl == "custom":
+        print("\n=== Using: Custom DecisionTree ===")
+        model = DecisionTree(
+            max_depth=args.max_depth,
+            min_samples=args.min_samples,
+            n_feats=int(np.sqrt(X.shape[1])),
+            random_state=args.random_state
+        )
+    else:
+        print("\n=== Using: sklearn DecisionTreeClassifier ===")
+        model = DecisionTreeClassifier(
+            max_depth=args.max_depth,
+            random_state=args.random_state
+        )
+
+    # 4. Train and evaluate
+    model.fit(X_train, y_train)
+    print("\nValidation performance:")
+    evaluate(model, X_val, y_val)
+    print("\nTest performance:")
+    evaluate(model, X_test, y_test)
 
 
 if __name__ == "__main__":
-    # 1) Wczytaj dane
-    donor_examples    = load_dna_with_window("input_data/spliceDTrainKIS.dat", "donor",    window_size=5)
-    acceptor_examples = load_dna_with_window("input_data/spliceATrainKIS.dat", "acceptor", window_size=5)
-    all_examples      = donor_examples + acceptor_examples
-
-    # 2) Regexy i pozycje
-    regex_list = load_regex_patterns("input_data/regex_patterns.txt")
-    positions  = [7, 68]
-
-    # 3) Ekstrakcja cech
-    X, y = extract_features(all_examples, regex_list, positions)
-    print("Class balance:", Counter(y))
-
-    # 4) Split: train+val / test, a potem train / val
-    X_trval, X_test,  y_trval, y_test  = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
-    X_train, X_val, y_train, y_val = train_test_split(
-        X_trval, y_trval, test_size=0.2, random_state=42, stratify=y_trval
-    )
-
-    # 5a) Własne drzewo
-    custom_clf = DecisionTree(
-        max_depth=10,
-        min_samples=2,
-        n_feats=int(np.sqrt(X.shape[1])),
-        random_state=42
-    )
-    custom_clf.fit(X_train, y_train)
-    print("\n=== Custom DecisionTree ===")
-    print("Validation:")
-    evaluate(custom_clf, X_val, y_val)
-    print("\nTest:")
-    evaluate(custom_clf, X_test, y_test)
-
-    # 5b) sklearn DecisionTreeClassifier
-    sk_clf = DecisionTreeClassifier(max_depth=10, random_state=42)
-    sk_clf.fit(X_train, y_train)
-    print("\n=== sklearn DecisionTreeClassifier ===")
-    print("Validation:")
-    evaluate(sk_clf, X_val, y_val)
-    print("\nTest:")
-    evaluate(sk_clf, X_test, y_test)
+    main()
