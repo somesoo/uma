@@ -16,7 +16,7 @@ def evaluate(model, X, y_true, name=""):
     prec = precision_score(y_true, y_pred, zero_division=0)
     rec = recall_score(y_true, y_pred, zero_division=0)
     f1 = f1_score(y_true, y_pred, zero_division=0)
-    print(f"[{name}] Acc: {acc:.3f}, Prec: {prec:.3f}, Recall: {rec:.3f}, F1: {f1:.3f}")
+    print(f"[{name}] Acc: {acc:.2f}, Prec: {prec:.2f}, Recall: {rec:.2f}, F1: {f1:.2f}")
     return acc, prec, rec, f1
 
 def compare_models(
@@ -50,7 +50,7 @@ def compare_models(
     custom_clf = DecisionTree(max_depth=max_depth, min_samples=min_samples, n_feats=n_feats, random_state=random_state)
     custom_clf.fit(X_train, y_train)
     train_time_custom = time.time() - start
-    print(f"Training time: {train_time_custom:.3f} s")
+    print(f"Training time: {train_time_custom:.2f} s")
     evaluate(custom_clf, X_val, y_val, "Custom - Val")
     evaluate(custom_clf, X_test, y_test, "Custom - Test")
 
@@ -60,14 +60,14 @@ def compare_models(
     sk_clf = DecisionTreeClassifier(max_depth=max_depth, random_state=random_state)
     sk_clf.fit(X_train, y_train)
     train_time_sklearn = time.time() - start
-    print(f"Training time: {train_time_sklearn:.3f} s")
+    print(f"Training time: {train_time_sklearn:.2f} s")
     evaluate(sk_clf, X_val, y_val, "sklearn - Val")
     evaluate(sk_clf, X_test, y_test, "sklearn - Test")
 
     # 5. Summary
     print("\n=== Summary ===")
-    print(f"Custom  training time:  {train_time_custom:.3f} s")
-    print(f"sklearn training time: {train_time_sklearn:.3f} s")
+    print(f"Custom  training time:  {train_time_custom:.2f} s")
+    print(f"sklearn training time: {train_time_sklearn:.2f} s")
 
 if __name__ == "__main__":
     compare_models(
