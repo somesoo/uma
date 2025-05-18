@@ -1,5 +1,5 @@
-from itertools import product
 from typing import List
+from itertools import product
 
 def save_kgram_regexes_to_file(k: int, output_file: str, alphabet: str = "ACGT") -> None:
     with open(output_file, "w") as f:

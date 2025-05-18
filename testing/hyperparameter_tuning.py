@@ -72,18 +72,18 @@ def tune_hyperparameters(
     # Sorting first by recall and second by accuracy
     results.sort(key=lambda x: (x[4], x[2]), reverse=True)
 
-    print(f"\nBEST → max_depth={results[0][0]}, min_samples={results[0][1]}, Recall={results[0][4]:.3f}\n")
+    print(f"\nBEST → max_depth={results[0][0]}, min_samples={results[0][1]}, Recall={results[0][4]:.2f}, F1={results[0][5]:.2f}\n")
     print("ALL results:")
     for res in results:
         md, ms, acc, prec, rec, f1, tp, fp, tn, fn = res
-        print(f"depth={md:2d}, min_samp={ms:2d} → acc={acc:.3f}, prec={prec:.3f}, rec={rec:.3f}, f1={f1:.3f}")
+        print(f"depth={md:2d}, min_samp={ms:2d} → acc={acc:.2f}, prec={prec:.2f}, rec={rec:.2f}, f1={f1:.2f}")
 
 if __name__ == "__main__":
     tune_hyperparameters(
-        # data_path        = "input_data/spliceDTrainKIS.dat",
-        # data_label       = "donor",
-        data_path        = "input_data/spliceATrainKIS.dat",
-        data_label       = "acceptor",
+        data_path        = "input_data/spliceDTrainKIS.dat",
+        data_label       = "donor",
+        #data_path        = "input_data/spliceATrainKIS.dat",
+        #data_label       = "acceptor",
         regex_path       = "input_data/regex_patterns.txt",
         window_size      = 5,
         positions        = [7, 68],

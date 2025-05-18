@@ -71,7 +71,7 @@ def compare_models(
 
 if __name__ == "__main__":
     compare_models(
-        data_path  = "input_data/spliceDTrainKIS.dat",
-        data_label = "donor",
+        data_path  = "input_data/spliceATrainKIS.dat",
+        data_label = "acceptor",
         regex_path = "input_data/regex_patterns.txt"
     )
