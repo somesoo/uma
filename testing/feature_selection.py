@@ -66,7 +66,7 @@ def feature_selection_search(
 
     print("\nBest position pairs (sorted by recall → f1):")
     for (pos1, pos2), acc, prec, recall, f1 in results:
-        print(f"Positions: [{pos1}, {pos2}] → Acc={acc:.3f}, Prec={prec:.3f}, Recall={recall:.3f}, F1={f1:.3f}")
+        print(f"Positions: [{pos1}, {pos2}] → Acc={acc:.2f}, Prec={prec:.2f}, Recall={recall:.2f}, F1={f1:.2f}")
 
     return results
 
