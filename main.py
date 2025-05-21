@@ -47,9 +47,9 @@ def main():
         raise ValueError(f"Unsupported data_type: {args.data_type}")
 
     # 1. Load DNA data
-    examples = load_dna_with_window(args.data_path, args.data_type, args.window_size)
+    examples = load_dna_with_window(args.data_path, args.data_type)
     regexes = load_regex_patterns(args.regex_path)
-    X, y = extract_features(examples, regexes, positions)
+    X, y = extract_features(examples, regexes)
     print("Class distribution:", Counter(y))
 
     # 2. Split into train/val/test

@@ -2,6 +2,7 @@ import os
 import re
 import joblib
 import numpy as np
+import csv
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_curve, auc
 from sklearn.model_selection import train_test_split
@@ -13,20 +14,55 @@ Example = Tuple[int, str, str, str]
 def extract_features(
     examples: List[Example],
     regex_list: List[str],
-    positions: List[int]
+    output_file: str = "features.csv"
 ) -> Tuple[np.ndarray, np.ndarray]:
     
     X, y = [], []
-    for label, seq, *_ in examples:
-        feats = [
-            int(re.fullmatch(rx, seq[pos:pos+len(rx)]) is not None)
-            if pos+len(rx) <= len(seq) else 0
-            for pos in positions
-            for rx in regex_list
-        ]
+    header = [f"rx_{i}_{rx}" for i, rx in enumerate(regex_list)]
+    
+    with open(output_file, mode="w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(header + ["label"])  # nagłówki
+        
+        for label, window_seq, *_ in examples:
+            feats = [
+                int(re.fullmatch(rx, window_seq) is not None)
+                for rx in regex_list
+            ]
+            writer.writerow(feats + [label])
+            X.append(feats)
+            y.append(label)
+    
+    print(f"Zapisano macierz cech do pliku: {output_file}")
+    return np.array(X, dtype=int), np.array(y, dtype=int)
+
+def extract_features_with_values(
+    examples: List[Example],
+    regex_list: List[str]
+) -> Tuple[np.ndarray, np.ndarray]:
+    
+    X, y = [], []
+    for idx, (label, window_seq, *_ ) in enumerate(examples):
+        print(f"\n🔬 Przykład {idx+1}:")
+        print(f"  Sekwencja okna: {window_seq}")
+        print(f"  Etykieta: {label}")
+        
+        feats = []
+        for rx in regex_list:
+            match = re.fullmatch(rx, window_seq)
+            if match:
+                matched_value = match.group(0)
+                print(f"    ✅ Dopasowanie: /{rx}/ do '{window_seq}' → '{matched_value}'")
+                feats.append(matched_value)
+            else:
+                print(f"    ❌ Brak dopasowania: /{rx}/ do '{window_seq}'")
+                feats.append('')  # brak dopasowania = pusty string
+        
         X.append(feats)
         y.append(label)
-    return np.array(X, dtype=int), np.array(y, dtype=int)
+    
+    return np.array(X), np.array(y)
+
 
 
 def evaluate(model, X_test, y_test):
