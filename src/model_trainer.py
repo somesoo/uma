@@ -8,6 +8,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_c
 from sklearn.model_selection import train_test_split
 from src.decision_tree.model import DecisionTree
 from typing import List, Tuple
+from sklearn.metrics import classification_report
 
 Example = Tuple[int, str, str, str]
 
@@ -41,7 +42,8 @@ def evaluate(model, X_test, y_test):
     print(f"Accuracy:  {accuracy_score(y_test, y_pred):.3f}")
     print(f"Precision: {precision_score(y_test, y_pred, zero_division=0):.3f}")
     print(f"Recall:    {recall_score(y_test, y_pred, zero_division=0):.3f}")
-
+    print("\n=== Classification report ===")
+    print(classification_report(y_test, y_pred, digits=3))
     try:
         y_proba = model.predict_proba(X_test)[:, 1]
         fpr, tpr, _ = roc_curve(y_test, y_proba)
@@ -49,7 +51,7 @@ def evaluate(model, X_test, y_test):
         plt.plot(fpr, tpr, label=f"AUC = {auc(fpr, tpr):.3f}")
         plt.plot([0, 1], [0, 1], 'k--')
         plt.xlabel("FPR"); plt.ylabel("TPR"); plt.legend(loc="lower right")
-        plt.show()
+#        plt.show()
     except AttributeError:
         print("Model does not support probability predictions.")
 

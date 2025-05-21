@@ -20,7 +20,7 @@ def parse_args():
                         help="Path to the DNA data file")
     parser.add_argument("--regex_path", default="input_data/regex_patterns.txt",
                         help="Path to the regex patterns file")
-    parser.add_argument("--window_size", type=int, default=5,
+    parser.add_argument("--window_size", type=int, default=3,
                         help="Window size for extracting DNA sequence")
     parser.add_argument("--max_depth", type=int, default=10,
                         help="Maximum depth of the decision tree")
