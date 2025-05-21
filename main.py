@@ -22,8 +22,6 @@ def parse_args():
                         help="Path to the regex patterns file")
     parser.add_argument("--window_size", type=int, default=5,
                         help="Window size for extracting DNA sequence")
-    parser.add_argument("--positions", nargs="+", type=int, default=[7, 68],
-                        help="Sequence positions for regex feature extraction")
     parser.add_argument("--max_depth", type=int, default=10,
                         help="Maximum depth of the decision tree")
     parser.add_argument("--min_samples", type=int, default=2,
@@ -41,10 +39,17 @@ def parse_args():
 def main():
     args = parse_args()
 
+    if args.data_type == "acceptor":
+        positions = [68]
+    elif args.data_type == "donor":
+        positions = [7]
+    else:
+        raise ValueError(f"Unsupported data_type: {args.data_type}")
+
     # 1. Load DNA data
     examples = load_dna_with_window(args.data_path, args.data_type, args.window_size)
     regexes = load_regex_patterns(args.regex_path)
-    X, y = extract_features(examples, regexes, args.positions)
+    X, y = extract_features(examples, regexes, positions)
     print("Class distribution:", Counter(y))
 
     # 2. Split into train/val/test

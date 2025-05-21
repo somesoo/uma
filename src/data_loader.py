@@ -12,8 +12,10 @@ def load_dna_with_window(filepath: str, dataset_type: str, window_size: int = 5)
         for i in range(0, len(lines), 2):
             label = int(lines[i].strip())
             full_seq = lines[i + 1].strip().upper()
-            start = max(0, boundary_pos - window_size)
-            end = boundary_pos + window_size
-            window_seq = full_seq[start:end]
+            window_seq = full_seq[boundary_pos : boundary_pos + window_size]
             examples.append((label, window_seq, dataset_type, full_seq))
     return examples
+
+
+p= load_dna_with_window("input_data/spliceATrainKIS.dat", "acceptor", 5)
+print(p)

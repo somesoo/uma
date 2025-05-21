@@ -13,18 +13,28 @@ def tune_hyperparameters(
     data_label: str,
     regex_path: str,
     window_size: int,
-    positions: list[int],
     max_depths: list[int],
     min_samples_list: list[int],
     test_size: float = 0.2,
     random_state: int = 42,
     n_repeats: int = 5
 ):
+    if data_label.lower() == "acceptor":
+        positions = [68]
+    elif data_label.lower() == "donor":
+        positions = [7]
+    else:
+        raise ValueError(f"Unsupported data_label: {data_label}")
+
+    print(f"\nTuning hyperparameters for '{data_label}' (positions = {positions})")
+
     # 1) Load and prepare features
     examples = load_dna_with_window(data_path, data_label, window_size)
     regexes  = load_regex_patterns(regex_path)
     X, y     = extract_features(examples, regexes, positions)
-
+    print("X.shape =", X.shape)
+    print("Example features (first row):", X[0])
+    print("Unique feature values:", np.unique(X))
     # 2) Split: train+val / test, and then train / val
     X_trval, X_test,  y_trval, y_test  = train_test_split(
         X, y, test_size=test_size, random_state=random_state, stratify=y
@@ -80,13 +90,12 @@ def tune_hyperparameters(
 
 if __name__ == "__main__":
     tune_hyperparameters(
-        #data_path        = "input_data/spliceDTrainKIS.dat",
-        #data_label       = "donor",
-        data_path        = "input_data/spliceATrainKIS.dat",
-        data_label       = "acceptor",
+        data_path        = "input_data/spliceDTrainKIS.dat",
+        data_label       = "donor",
+        # data_path        = "input_data/spliceATrainKIS.dat",
+        # data_label       = "acceptor",
         regex_path       = "input_data/regex_patterns.txt",
         window_size      = 5,
-        positions        = [7, 68],
         max_depths       = [3, 5, 10, 15, 20, 30],
         min_samples_list = [2, 5, 10, 20, 30],
         test_size        = 0.2,

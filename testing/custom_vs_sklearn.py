@@ -24,13 +24,19 @@ def compare_models(
     data_label: str,
     regex_path: str,
     window_size: int = 5,
-    positions: list[int] = [7, 68],
     max_depth: int = 10,
     min_samples: int = 2,
     test_size: float = 0.2,
     random_state: int = 42
 ):
     print(f"\n=== Comparing models for '{data_label}' dataset ===")
+
+    if data_label.lower() == "acceptor":
+        positions = [68]
+    elif data_label.lower() == "donor":
+        positions = [7]
+    else:
+        raise ValueError(f"Unknown data_label: {data_label}. Expected 'acceptor' or 'donor'.")
 
     # 1. Load and extract features
     examples = load_dna_with_window(data_path, data_label, window_size)
