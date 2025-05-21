@@ -36,32 +36,6 @@ def extract_features(
     print(f"Zapisano macierz cech do pliku: {output_file}")
     return np.array(X, dtype=int), np.array(y, dtype=int)
 
-def extract_features_with_values(
-    examples: List[Example],
-    regex_list: List[str]
-) -> Tuple[np.ndarray, np.ndarray]:
-    
-    X, y = [], []
-    for idx, (label, window_seq, *_ ) in enumerate(examples):
-        print(f"\n🔬 Przykład {idx+1}:")
-        print(f"  Sekwencja okna: {window_seq}")
-        print(f"  Etykieta: {label}")
-        
-        feats = []
-        for rx in regex_list:
-            match = re.fullmatch(rx, window_seq)
-            if match:
-                matched_value = match.group(0)
-                print(f"    ✅ Dopasowanie: /{rx}/ do '{window_seq}' → '{matched_value}'")
-                feats.append(matched_value)
-            else:
-                print(f"    ❌ Brak dopasowania: /{rx}/ do '{window_seq}'")
-                feats.append('')  # brak dopasowania = pusty string
-        
-        X.append(feats)
-        y.append(label)
-    
-    return np.array(X), np.array(y)
 
 
 
