@@ -48,8 +48,9 @@ class DecisionTree:
         right = self._grow_tree(Xr, yr, depth + 1)
         return Node(best_feat, best_thr, left, right)
 
-    def predict(self, X):
-        return np.array([self._traverse_tree(x, self.root) for x in X])
+    def predict(self, X, threshold=0.25):
+        probs = self.predict_proba(X)[:, 1]
+        return (probs >= threshold).astype(int)
 
     def _traverse_tree(self, x, node):
         if node.value is not None:

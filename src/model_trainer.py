@@ -36,9 +36,6 @@ def extract_features(
     print(f"Zapisano macierz cech do pliku: {output_file}")
     return np.array(X, dtype=int), np.array(y, dtype=int)
 
-
-
-
 def evaluate(model, X_test, y_test):
     y_pred = model.predict(X_test)
     print(f"Accuracy:  {accuracy_score(y_test, y_pred):.3f}")
