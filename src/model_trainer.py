@@ -42,8 +42,6 @@ def evaluate(model, X_test, y_test):
     print(f"Accuracy:  {accuracy_score(y_test, y_pred):.3f}")
     print(f"Precision: {precision_score(y_test, y_pred, zero_division=0):.3f}")
     print(f"Recall:    {recall_score(y_test, y_pred, zero_division=0):.3f}")
-    print("\n=== Classification report ===")
-    print(classification_report(y_test, y_pred, digits=3))
     try:
         y_proba = model.predict_proba(X_test)[:, 1]
         fpr, tpr, _ = roc_curve(y_test, y_proba)
@@ -54,8 +52,9 @@ def evaluate(model, X_test, y_test):
 #        plt.show()
     except AttributeError:
         print("Model does not support probability predictions.")
-
-
+    print("\n=== Classification report ===")
+    print(classification_report(y_test, y_pred, digits=3))
+    
 def train_and_save_model(
     X, y,
     model_path: str,
