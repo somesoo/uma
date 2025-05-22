@@ -28,7 +28,7 @@ def parse_args():
                         help="Minimum number of samples to split (for custom implementation)")
     parser.add_argument("--test_size", type=float, default=0.2,
                         help="Fraction of data used for testing (between 0 and 1)")
-    parser.add_argument("--random_state", type=int, default=48,
+    parser.add_argument("--random_state", type=int, default=42,
                         help="Random seed for reproducibility")
     parser.add_argument("--impl", choices=["custom", "sklearn"], default="custom",
                         help="Decision tree implementation to use: 'custom' or 'sklearn'")

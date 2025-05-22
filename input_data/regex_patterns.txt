@@ -31,8 +31,6 @@ ATAC..C
 .TA.GCA
 ...G..G
 C.T....
-GGACGTC
-AGGGGTA
 .C....C
 .GC...G
 TCAT.TT
@@ -52,7 +50,6 @@ AC.....
 .A...A.
 ..T..A.
 ....AA.
-TATA.A.
 ..A..G.
 G.....C
 .G.T...

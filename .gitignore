@@ -2,3 +2,4 @@
 __pycache__
 decision_tree_model.joblib
 /output
+features.csv
