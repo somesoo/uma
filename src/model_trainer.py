@@ -34,8 +34,29 @@ def extract_features(
             X.append(feats)
             y.append(label)
     
-    print(f"Zapisano macierz cech do pliku: {output_file}")
     return np.array(X, dtype=int), np.array(y, dtype=int)
+
+def extract_one_hot_features(examples):
+    """
+    Zwraca: X (macierz cech), y (etykiety), feature_names (nazwy cech binarnych)
+    """
+    nucleotides = ["A", "C", "G", "T"]
+    X = []
+    y = []
+
+    seq_len = len(examples[0][1])
+    feature_names = [f"pos{i}_{nuc}" for i in range(seq_len) for nuc in nucleotides]
+
+    for label, seq, _, _ in examples:
+        row = []
+        for char in seq:
+            for nuc in nucleotides:
+                row.append(1 if char == nuc else 0)
+        X.append(row)
+        y.append(label)
+
+    return np.array(X), np.array(y), feature_names
+
 
 def evaluate(model, X_test, y_test):
     y_pred = model.predict(X_test)

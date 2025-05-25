@@ -4,7 +4,7 @@ from collections import Counter
 
 from src.data_loader import load_dna_with_window
 from src.regex_generator import load_regex_patterns
-from src.model_trainer import extract_features, evaluate
+from src.model_trainer import extract_features, extract_one_hot_features, evaluate
 from src.decision_tree.model import DecisionTree
 
 from sklearn.tree import DecisionTreeClassifier
@@ -34,6 +34,8 @@ def parse_args():
                         help="Random seed for reproducibility")
     parser.add_argument("--impl", choices=["custom", "sklearn"], default="custom",
                         help="Decision tree implementation to use: 'custom' or 'sklearn'")
+    parser.add_argument("--feature_type", choices=["regex", "onehot"], default="regex",
+                        help="Feature type to use: 'regex' (default) or 'onehot'")
 
     return parser.parse_args()
 
@@ -51,12 +53,19 @@ def main():
     # 1. Load DNA data
     regexes = load_regex_patterns(args.regex_path)
     regex_len = len(regexes[1])
-    print(regex_len)
+    print("Regex length:", regex_len)
     examples = load_dna_with_window(args.data_path, args.data_type, regex_len)
-    X, y = extract_features(examples, regexes)
+
+    # 2. Extract features
+    if args.feature_type == "regex":
+        X, y = extract_features(examples, regexes)
+        feature_names = [f"x{i}" for i in range(X.shape[1])]
+    elif args.feature_type == "onehot":
+        X, y, feature_names = extract_one_hot_features(examples)
+
     print("Class distribution:", Counter(y))
 
-    # 2. Split into train/val/test
+    # 3. Split into train/val/test
     X_trval, X_test, y_trval, y_test = train_test_split(
         X, y, test_size=args.test_size, random_state=args.random_state, stratify=y
     )
@@ -64,13 +73,13 @@ def main():
         X_trval, y_trval, test_size=args.test_size, random_state=args.random_state, stratify=y_trval
     )
 
-    # 3. Select model implementation
+    # 4. Select model implementation
     if args.impl == "custom":
         print("\n=== Using: Custom DecisionTree ===")
         model = DecisionTree(
             max_depth=args.max_depth,
             min_samples=args.min_samples,
-            n_feats = X.shape[1],
+            n_feats=X.shape[1],
             random_state=args.random_state
         )
     else:
@@ -80,22 +89,24 @@ def main():
             random_state=args.random_state
         )
 
-    # 4. Train and evaluate
+    # 5. Train and evaluate
     model.fit(X_train, y_train)
     print("\nValidation performance:")
     evaluate(model, X_val, y_val)
     print("\nTest performance:")
     evaluate(model, X_test, y_test)
 
+    # 6. Visualize
     if args.impl == "sklearn":
         plt.figure(figsize=(20, 10))
-        plot_tree(model, filled=True, feature_names=[f"x{i}" for i in range(X.shape[1])], class_names=["0", "1"])
+        plot_tree(model, filled=True, feature_names=feature_names, class_names=["0", "1"])
         plt.title("Decision Tree Visualization (sklearn)")
         plt.savefig("output/decision_tree_sklearn.png")
         plt.show()
-    if args.impl == "custom":
-        print("\nText ilustration of decision tree (custom):")
-        print(model.export_text(feature_names=[f"x{i}" for i in range(X.shape[1])]))
+    elif args.impl == "custom":
+        print("\nText illustration of decision tree (custom):")
+        print(model.export_text(feature_names=feature_names))
+
 
 if __name__ == "__main__":
     main()
