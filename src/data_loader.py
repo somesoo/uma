@@ -6,15 +6,18 @@ def load_dna_with_window(filepath: str, dataset_type: str, regex_len: str) -> Li
     examples = []
     with open(filepath, "r") as f:
         lines = f.read().splitlines()
-        boundary_pos = int(lines[0].strip()) - 1
+        boundary_pos = int(lines[0].strip())
         lines = lines[1:]
 
         for i in range(0, len(lines), 2):
             label = int(lines[i].strip())
             full_seq = lines[i + 1].strip().upper()
+            if dataset_type == "donor":
+                full_seq = full_seq[:7] + full_seq[9:]
             start = boundary_pos
             end = boundary_pos + regex_len
             if end <= len(full_seq):  # zabezpieczenie
+                print(full_seq)
                 window_seq = full_seq[start:end]
                 examples.append((label, window_seq, dataset_type, full_seq))
             else:
