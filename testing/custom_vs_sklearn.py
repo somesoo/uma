@@ -41,7 +41,7 @@ def compare_models(
     # 1. Load and extract features
     examples = load_dna_with_window(data_path, data_label, window_size)
     regexes  = load_regex_patterns(regex_path)
-    X, y     = extract_features(examples, regexes, positions)
+    X, y     = extract_features(examples, regexes)
     print("Class balance:", Counter(y))
 
     # 2. Split dataset

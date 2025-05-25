@@ -97,8 +97,6 @@ def main():
 
     # 5. Train and evaluate
     model.fit(X_train, y_train)
-    print("\nValidation performance:")
-    evaluate(model, X_val, y_val)
     print("\nTest performance:")
     evaluate(model, X_test, y_test)
 
@@ -111,7 +109,7 @@ def main():
         plt.show()
     elif args.impl == "custom":
         print("\nText illustration of decision tree (custom):")
-        print(model.export_text(feature_names=feature_names))
+        #print(model.export_text(feature_names=feature_names))
 
 
 if __name__ == "__main__":

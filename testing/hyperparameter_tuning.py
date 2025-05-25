@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 from src.data_loader import load_dna_with_window
 from src.regex_generator import load_regex_patterns
-from src.model_trainer import extract_features
+from src.model_trainer import extract_features, extract_features_full
 from src.decision_tree.model import DecisionTree
 
 def tune_hyperparameters(
@@ -26,12 +26,12 @@ def tune_hyperparameters(
     else:
         raise ValueError(f"Unsupported data_label: {data_label}")
 
-    print(f"\nTuning hyperparameters for '{data_label}' (positions = {positions})")
+#    print(f"\nTuning hyperparameters for '{data_label}' (positions = {positions})")
 
     # 1) Load and prepare features
     examples = load_dna_with_window(data_path, data_label, window_size)
     regexes  = load_regex_patterns(regex_path)
-    X, y     = extract_features(examples, regexes, positions)
+    X, y     = extract_features_full(examples, regexes)
     print("X.shape =", X.shape)
     print("Example features (first row):", X[0])
     print("Unique feature values:", np.unique(X))
@@ -90,10 +90,10 @@ def tune_hyperparameters(
 
 if __name__ == "__main__":
     tune_hyperparameters(
-        data_path        = "input_data/spliceDTrainKIS.dat",
-        data_label       = "donor",
-        # data_path        = "input_data/spliceATrainKIS.dat",
-        # data_label       = "acceptor",
+        #data_path        = "input_data/spliceDTrainKIS.dat",
+        #data_label       = "donor",
+        data_path        = "input_data/spliceATrainKIS.dat",
+        data_label       = "acceptor",
         regex_path       = "input_data/regex_patterns.txt",
         window_size      = 5,
         max_depths       = [3, 5, 10, 15, 20, 30],
