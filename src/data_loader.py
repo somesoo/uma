@@ -19,7 +19,7 @@ def load_dna_with_window(filepath: str, dataset_type: str, regex_len: str) -> Li
             start = boundary_pos
             end = boundary_pos + regex_len
             if end <= len(full_seq):  # zabezpieczenie
-                print(full_seq)
+#                print(full_seq)
                 window_seq = full_seq[start:end]
                 examples.append((label, window_seq, dataset_type, full_seq))
             else:
