@@ -21,7 +21,6 @@ def best_split(X, y, feature_idxs, min_samples=2):
             Xl, yl, Xr, yr = split_dataset(X, y, idx, thr)
             if len(yl) < min_samples or len(yr) < min_samples:
                 continue
-            from src.decision_tree.metrics_func import gini_impurity
             g_left = gini_impurity(yl)
             g_right = gini_impurity(yr)
             w_left = len(yl) / len(y)

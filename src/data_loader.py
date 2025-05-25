@@ -14,6 +14,8 @@ def load_dna_with_window(filepath: str, dataset_type: str, regex_len: str) -> Li
             full_seq = lines[i + 1].strip().upper()
             if dataset_type == "donor":
                 full_seq = full_seq[:7] + full_seq[9:]
+            elif dataset_type == "acceptor":
+                full_seq = full_seq[:68] + full_seq[70:]
             start = boundary_pos
             end = boundary_pos + regex_len
             if end <= len(full_seq):  # zabezpieczenie

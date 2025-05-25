@@ -1,7 +1,3 @@
-Porównanie z klasyfikatorem klasycznym
-Pokazać drzewo - zajrzeć do środka XAI?
-Testów więcej z regexami
-
 
 # Polecenie
 
