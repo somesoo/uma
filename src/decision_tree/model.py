@@ -19,7 +19,6 @@ class DecisionTree:
         self.min_samples = min_samples
         self.n_feats = n_feats
         self.root = None
-        self.rng = np.random.RandomState(random_state) 
 
     def fit(self, X, y):
         self.n_feats = X.shape[1] if not self.n_feats else self.n_feats
