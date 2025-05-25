@@ -4,7 +4,7 @@ from collections import Counter
 
 from src.data_loader import load_dna_with_window
 from src.regex_generator import load_regex_patterns
-from src.model_trainer import extract_features, extract_one_hot_features, evaluate
+from src.model_trainer import extract_features, extract_features_full, extract_one_hot_features, evaluate
 from src.decision_tree.model import DecisionTree
 
 from sklearn.tree import DecisionTreeClassifier
@@ -36,6 +36,9 @@ def parse_args():
                         help="Decision tree implementation to use: 'custom' or 'sklearn'")
     parser.add_argument("--feature_type", choices=["regex", "onehot"], default="regex",
                         help="Feature type to use: 'regex' (default) or 'onehot'")
+    parser.add_argument("--regex_search", choices=["full", "window"], default="full",
+                        help="Feature type to use: 'full' (default) or 'window'")
+
 
     return parser.parse_args()
 
@@ -58,7 +61,10 @@ def main():
 
     # 2. Extract features
     if args.feature_type == "regex":
-        X, y = extract_features(examples, regexes)
+        if args.regex_search == "full":
+            X, y = extract_features_full(examples, regexes)
+        elif args.regex_search == "window":
+            X, y = extract_features(examples, regexes)
         feature_names = [f"x{i}" for i in range(X.shape[1])]
     elif args.feature_type == "onehot":
         X, y, feature_names = extract_one_hot_features(examples)

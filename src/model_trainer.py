@@ -12,6 +12,36 @@ from sklearn.metrics import classification_report
 
 Example = Tuple[int, str, str, str]
 
+def extract_features_full(
+    examples: List[Example],
+    regex_list: List[str],
+    output_file: str = "features.csv"
+) -> Tuple[np.ndarray, np.ndarray]:
+    
+    X, y = [], []
+    header = [f"rx_{i}_{rx}" for i, rx in enumerate(regex_list)]
+    
+    with open(output_file, mode="w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(header + ["label"])
+
+        for label, _, _, full_seq in examples:
+            feats = []
+            for rx in regex_list:
+                regex_len = len(rx)
+                found = False
+                for i in range(len(full_seq) - regex_len + 1):
+                    fragment = full_seq[i:i+regex_len]
+                    if re.fullmatch(rx, fragment):
+                        found = True
+                        break
+                feats.append(int(found))
+            writer.writerow(feats + [label])
+            X.append(feats)
+            y.append(label)
+
+    return np.array(X, dtype=int), np.array(y, dtype=int)
+
 def extract_features(
     examples: List[Example],
     regex_list: List[str],
@@ -23,7 +53,7 @@ def extract_features(
     
     with open(output_file, mode="w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(header + ["label"])  # nagłówki
+        writer.writerow(header + ["label"]) 
         
         for label, window_seq, *_ in examples:
             feats = [
