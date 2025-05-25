@@ -67,6 +67,35 @@ class DecisionTree:
                 node = node.left if x[node.feature_idx] <= node.threshold else node.right
             probs.append(node.proba)
         return np.array(probs)
+    
+
+    def export_text(self, feature_names=None):
+        def recurse(node, prefix="", is_left=True):
+            lines = []
+            connector = "├── " if is_left else "└── "
+
+            if node.value is not None:
+                p0 = round(node.proba[0], 3)
+                p1 = round(node.proba[1], 3)
+                lines.append(f"{prefix}{connector}Predict: {node.value} (proba: [{p0}, {p1}])")
+                return lines
+
+            name = feature_names[node.feature_idx] if feature_names else f"x[{node.feature_idx}]"
+            if node.threshold == 0.0:
+                condition = f"{name} == 0"
+                else_condition = f"{name} == 1"
+            else:
+                condition = f"{name} <= {node.threshold:.2f}"
+                else_condition = f"{name} > {node.threshold:.2f}"
+
+            lines.append(f"{prefix}{connector}If {condition}:")
+            lines += recurse(node.left, prefix + ("│   " if is_left else "    "), True)
+            lines.append(f"{prefix}{'│   ' if is_left else '    '}Else (if {else_condition}):")
+            lines += recurse(node.right, prefix + ("│   " if is_left else "    "), False)
+            return lines
+
+        return "\n".join(recurse(self.root, "", True))
+
 
     @staticmethod
     def _most_common_label(y):

@@ -9,6 +9,8 @@ from src.decision_tree.model import DecisionTree
 
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
 
 
 def parse_args():
@@ -68,7 +70,7 @@ def main():
         model = DecisionTree(
             max_depth=args.max_depth,
             min_samples=args.min_samples,
-            n_feats=int(np.sqrt(X.shape[1])),
+            n_feats = X.shape[1],
             random_state=args.random_state
         )
     else:
@@ -85,6 +87,15 @@ def main():
     print("\nTest performance:")
     evaluate(model, X_test, y_test)
 
+    if args.impl == "sklearn":
+        plt.figure(figsize=(20, 10))
+        plot_tree(model, filled=True, feature_names=[f"x{i}" for i in range(X.shape[1])], class_names=["0", "1"])
+        plt.title("Decision Tree Visualization (sklearn)")
+        plt.savefig("output/decision_tree_sklearn.png")
+        plt.show()
+    if args.impl == "custom":
+        print("\nText ilustration of decision tree (custom):")
+        print(model.export_text(feature_names=[f"x{i}" for i in range(X.shape[1])]))
 
 if __name__ == "__main__":
     main()
