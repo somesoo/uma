@@ -20,9 +20,7 @@ def evaluate(model, X, y_true, name=""):
     return acc, prec, rec, f1
 
 def compare_models(
-    data_path: str,
     data_label: str,
-    regex_path: str,
     window_size: int = 5,
     max_depth: int = 10,
     min_samples: int = 2,
@@ -37,10 +35,18 @@ def compare_models(
         positions = [7]
     else:
         raise ValueError(f"Unknown data_label: {data_label}. Expected 'acceptor' or 'donor'.")
-
+    data_path = {
+        "donor": "input_data/spliceDTrainKIS.dat",
+        "acceptor": "input_data/spliceATrainKIS.dat"
+    }
+    regex_paths = {
+        "donor": "input_data/regex_donor.txt",
+        "acceptor": "input_data/regex_acceptor.txt"
+    }  
+    regexes = load_regex_patterns(regex_paths[data_label])
     # 1. Load and extract features
-    examples = load_dna_with_window(data_path, data_label, window_size)
-    regexes  = load_regex_patterns(regex_path)
+    examples = load_dna_with_window(data_path[data_label], data_label, len(regexes[0]))
+
     X, y     = extract_features(examples, regexes)
     print("Class balance:", Counter(y))
 
@@ -77,7 +83,5 @@ def compare_models(
 
 if __name__ == "__main__":
     compare_models(
-        data_path  = "input_data/spliceATrainKIS.dat",
         data_label = "acceptor",
-        regex_path = "input_data/regex_patterns.txt"
     )

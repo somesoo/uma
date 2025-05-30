@@ -17,7 +17,10 @@ def compare_onehot_vs_regex():
         ["custom", "sklearn"]        # implementation
     ))
 
-    regex_path = "input_data/regex_patterns.txt"
+    regex_paths = {
+        "donor": "input_data/regex_donor.txt",
+        "acceptor": "input_data/regex_acceptor.txt"
+    }  
     data_paths = {
         "donor": "input_data/spliceDTrainKIS.dat",
         "acceptor": "input_data/spliceATrainKIS.dat"
@@ -31,7 +34,7 @@ def compare_onehot_vs_regex():
     results = []
 
     for data_type, feature_type, impl in configs:
-        regexes = load_regex_patterns(regex_path)
+        regexes = load_regex_patterns(regex_paths[data_type])
         regex_len = len(regexes[1])
         examples = load_dna_with_window(data_paths[data_type], data_type, regex_len)
 

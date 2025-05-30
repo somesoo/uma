@@ -35,7 +35,7 @@ def main():
     parser.add_argument("-k", type=int, required=True, help="długość wzorca")
     parser.add_argument("-w", "--wildcards", type=int, required=True, help="maks. liczba wildcardów '.'")
     parser.add_argument("-n", "--limit", type=int, required=True, help="docelowa liczba regexów")
-    parser.add_argument("-o", "--output", default="input_data/regex_patterns.txt", help="plik wynikowy")
+    parser.add_argument("-o", "--output", default="input_data/regex_donor.txt", help="plik wynikowy")
 
     args = parser.parse_args()
     output_path = Path(args.output)

@@ -46,8 +46,17 @@ def parse_args():
 def main():
     args = parse_args()
 
+    regex_paths = {
+        "donor": "input_data/regex_donor.txt",
+        "acceptor": "input_data/regex_acceptor.txt"
+    }  
+    data_paths = {
+        "donor": "input_data/spliceDTrainKIS.dat",
+        "acceptor": "input_data/spliceATrainKIS.dat"
+    }
+
     # 1. Load DNA data
-    regexes = load_regex_patterns(args.regex_path)
+    regexes = load_regex_patterns(regex_paths[args.data_type])
     regex_len = len(regexes[1])
     print("Regex length:", regex_len)
     examples = load_dna_with_window(args.data_path, args.data_type, regex_len)

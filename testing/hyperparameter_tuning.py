@@ -91,11 +91,12 @@ if __name__ == "__main__":
     
     type = ["donor", "acceptor"]
     file = ["input_data/spliceDTrainKIS.dat", "input_data/spliceATrainKIS.dat"]
-    for i, j in zip(type, file):
+    regex_paths = ["input_data/regex_donor.txt","input_data/regex_acceptor.txt"]
+    for i, j, k in zip(type, file, regex_paths):
         tune_hyperparameters(
             data_path        = j,
             data_label       = i,
-            regex_path       = "input_data/regex_patterns.txt",
+            regex_path       = k,
             max_depths       = [3, 5, 10, 15, 20, 30],
             min_samples_list = [2, 5, 10, 20, 30],
             test_size        = 0.2,
