@@ -46,13 +46,6 @@ def parse_args():
 def main():
     args = parse_args()
 
-    if args.data_type == "acceptor":
-        positions = [68]
-    elif args.data_type == "donor":
-        positions = [7]
-    else:
-        raise ValueError(f"Unsupported data_type: {args.data_type}")
-
     # 1. Load DNA data
     regexes = load_regex_patterns(args.regex_path)
     regex_len = len(regexes[1])

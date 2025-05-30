@@ -47,6 +47,12 @@ Dodatkowe argumenty:
 
 --test_size – rozmiar zbioru testowego/walidacyjnego (domyślnie 0.2)
 
+--feature_type", choices=["regex", "onehot"]
+
+--regex_search", choices=["full", "window"]
+
+--impl", choices=["custom", "sklearn"]
+
 2. Porównanie implementacji (custom vs sklearn)
 Aby porównać własne drzewo z implementacją sklearn:
 
