@@ -67,9 +67,6 @@ def extract_features(
     return np.array(X, dtype=int), np.array(y, dtype=int)
 
 def extract_one_hot_features(examples):
-    """
-    Zwraca: X (macierz cech), y (etykiety), feature_names (nazwy cech binarnych)
-    """
     nucleotides = ["A", "C", "G", "T"]
     X = []
     y = []

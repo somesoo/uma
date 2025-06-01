@@ -1,15 +1,14 @@
 import argparse
 from random import Random
 from pathlib import Path
-from collections import Counter
 
 DNA_ALPHABET = "ACGT"
 
 def generate_random_regex(k: int, max_wildcards: int, rng: Random) -> str:
-    """Losowo tworzy regex z <= max_wildcards wildcardami, z większym prawdopodobieństwem dla max"""
+    """Losowo tworzy regex z <= max_wildcards wildcardami, z preferencją środkowej liczby"""
     wildcard_count = rng.choices(
         population=list(range(max_wildcards + 1)),
-        weights=[1] * max_wildcards + [max(2 * max_wildcards, 10)],  # faworyzuj max_wildcards
+        weights=[i + 1 for i in range(max_wildcards + 1)],  # bardziej trójkątny rozkład
         k=1
     )[0]
 
@@ -21,7 +20,7 @@ def generate_random_regex(k: int, max_wildcards: int, rng: Random) -> str:
     return ''.join(base)
 
 def generate_unique_random_patterns(k, max_wildcards, limit, existing: set, rng, try_limit=1_000_000):
-    """Zwraca unikalne regexy z losową liczbą wildcardów (<= max_wildcards), preferując większe"""
+    """Zwraca unikalne regexy z większą różnorodnością"""
     attempts = 0
     while len(existing) < limit and attempts < try_limit:
         regex = generate_random_regex(k, max_wildcards, rng)
@@ -36,14 +35,15 @@ def main():
     parser.add_argument("-w", "--wildcards", type=int, required=True, help="maks. liczba wildcardów '.'")
     parser.add_argument("-n", "--limit", type=int, required=True, help="docelowa liczba regexów")
     parser.add_argument("-o", "--output", default="input_data/regex_donor.txt", help="plik wynikowy")
+    parser.add_argument("--seed", type=int, default=None, help="opcjonalne ziarno RNG")
 
     args = parser.parse_args()
     output_path = Path(args.output)
 
-    # Istniejące regexy
+    rng = Random(args.seed) if args.seed is not None else Random()
+
     existing = set(output_path.read_text().splitlines()) if output_path.exists() else set()
 
-    rng = Random(2025)
     with output_path.open("a") as f:
         for regex in generate_unique_random_patterns(args.k, args.wildcards, args.limit, existing, rng):
             f.write(regex + "\n")

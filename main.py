@@ -18,7 +18,7 @@ def parse_args():
 
     parser.add_argument("--data_type", choices=["donor", "acceptor"], required=True,
                         help="Type of input data: 'donor' or 'acceptor'")
-    parser.add_argument("--data_path", required=True,
+    parser.add_argument("--data_path",
                         help="Path to the DNA data file")
     parser.add_argument("--regex_path", default="input_data/regex_patterns.txt",
                         help="Path to the regex patterns file")
@@ -59,7 +59,7 @@ def main():
     regexes = load_regex_patterns(regex_paths[args.data_type])
     regex_len = len(regexes[1])
     print("Regex length:", regex_len)
-    examples = load_dna_with_window(args.data_path, args.data_type, regex_len)
+    examples = load_dna_with_window(data_paths[args.data_type], args.data_type, regex_len)
 
     # 2. Extract features
     if args.feature_type == "regex":

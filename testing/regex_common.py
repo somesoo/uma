@@ -8,7 +8,7 @@ def pretty_name(col: str) -> str:
         return f"regex {match.group(1)}:\t{match.group(2)}"
     return col  # fallback
 
-def analyze_feature_matches(csv_path: str, top_n: int = 10) -> None:
+def analyze_feature_matches(csv_path: str, top_n: int = 50) -> None:
     # Wczytaj dane
     df = pd.read_csv(csv_path)
     features = df.drop(columns=["label"])
