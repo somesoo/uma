@@ -57,7 +57,7 @@ def extract_features(
         
         for label, window_seq, *_ in examples:
             feats = [
-                int(re.fullmatch(rx, window_seq) is not None)
+                int(re.match(rx, window_seq) is not None)
                 for rx in regex_list
             ]
             writer.writerow(feats + [label])
@@ -81,7 +81,7 @@ def extract_one_hot_features(examples):
                 row.append(1 if char == nuc else 0)
         X.append(row)
         y.append(label)
-
+        print(row, label)
     return np.array(X), np.array(y), feature_names
 
 

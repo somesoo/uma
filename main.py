@@ -36,7 +36,7 @@ def parse_args():
                         help="Decision tree implementation to use: 'custom' or 'sklearn'")
     parser.add_argument("--feature_type", choices=["regex", "onehot"], default="regex",
                         help="Feature type to use: 'regex' (default) or 'onehot'")
-    parser.add_argument("--regex_search", choices=["full", "window"], default="full",
+    parser.add_argument("--regex_search", choices=["full", "window"], default="window",
                         help="Feature type to use: 'full' (default) or 'window'")
 
 
@@ -58,7 +58,6 @@ def main():
     # 1. Load DNA data
     regexes = load_regex_patterns(regex_paths[args.data_type])
     regex_len = len(regexes[1])
-    print("Regex length:", regex_len)
     examples = load_dna_with_window(data_paths[args.data_type], args.data_type, regex_len)
 
     # 2. Extract features
