@@ -39,7 +39,7 @@ def compare_onehot_vs_regex():
         examples = load_dna_with_window(data_paths[data_type], data_type, regex_len)
 
         if feature_type == "regex":
-            X, y = extract_features_full(examples, regexes)
+            X, y = extract_features(examples, regexes)
         else:
             X, y, _ = extract_one_hot_features(examples)
 

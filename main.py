@@ -101,6 +101,16 @@ def main():
     print("\nTest performance:")
     evaluate(model, X_test, y_test)
 
+    from sklearn.metrics import precision_score, recall_score, f1_score
+
+    y_pred = model.predict(X_test)
+    recall = recall_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+
+    with open("output/metrics_log.tsv", "a") as f:
+        f.write(f"{recall:.4f}\t{precision:.4f}\t{f1:.4f}\n")
+
     # 6. Visualize
     if args.impl == "sklearn":
         plt.figure(figsize=(20, 10))
