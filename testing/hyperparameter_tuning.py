@@ -31,10 +31,7 @@ def tune_hyperparameters(
     regexes  = load_regex_patterns(regex_path)
     examples = load_dna_with_window(data_path, data_label, len(regexes[1]))
     X, y     = extract_features(examples, regexes)
-#    print("X.shape =", X.shape)
-#    print("Example features (first row):", X[0])
-#    print("Unique feature values:", np.unique(X))
-    # 2) Split: train+val / test, and then train / val
+
     X_trval, X_test,  y_trval, y_test  = train_test_split(
         X, y, test_size=test_size, random_state=random_state, stratify=y
     )

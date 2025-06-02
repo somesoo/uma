@@ -22,7 +22,7 @@ def main():
     parser.add_argument('--features_path', default='features.csv')
     parser.add_argument('--regex_input', default='input_data/regex_acceptor.txt')
     parser.add_argument('--regex_output', default='input_data/regex_acceptor.txt')
-    parser.add_argument('--remove_k', type=int, default=5)
+    parser.add_argument('--remove_k', type=int, default=10)
     args = parser.parse_args()
 
     df = pd.read_csv(args.features_path)

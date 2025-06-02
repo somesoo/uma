@@ -11,17 +11,17 @@ do
 
   # Określ wartość -w zależnie od numeru iteracji
   if [ "$i" -le 5 ]; then
-    W=2
-    K=5
-  elif [ "$i" -le 10 ]; then
     W=3
     K=6
-  elif [ "$i" -le 15 ]; then
+  elif [ "$i" -le 10 ]; then
     W=4
-    K=7
-  else
+    K=5
+  elif [ "$i" -le 15 ]; then
     W=3
     K=5
+  else
+    W=4
+    K=6
   fi
 
   echo "--- Running main.py (iteration $i, wildcards = $W) ---"
@@ -34,7 +34,7 @@ do
   python3 testing/update_regex.py --features_path features.csv --regex_input input_data/regex_donor.txt --regex_output input_data/regex_donor.txt >> logs/iteration_$i.log
 
   echo "--- Generating new regexes (wildcards = $W) ---"
-  python3 src/custom_regex_generator.py -k "$K" -w "$W" -n 100 -o input_data/regex_donor.txt
+  python3 src/custom_regex_generator.py -k "$K" -w "$W" -n 120 -o input_data/regex_donor.txt
 done
 
 
