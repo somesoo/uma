@@ -76,3 +76,6 @@ max_depths = [3, 5, 10, 15, 20]
 min_samples_list = [2, 5, 10]
 ```
 Dla każdej kombinacji liczona jest średnia z metryk (precision, recall, F1, accuracy) na podstawie kilku powtórzeń (domyślnie 5).
+
+
+for i in {1..5000}; do   LOGFILE="logs/iteration_${i}.log";    echo "--- Running main.py (iteration $i) ---" | tee "$LOGFILE";   python3 main.py --data_type acceptor | tee -a "$LOGFILE";    echo "--- Evaluating regex performance ---" | tee -a "$LOGFILE";   python3 -m testing.regex_common --save_scores | tee -a "$LOGFILE";    echo "--- Selecting top regexes ---" | tee -a "$LOGFILE";   python3 select_top_regexes.py | tee -a "$LOGFILE"; done

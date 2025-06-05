@@ -4,3 +4,5 @@ decision_tree_model.joblib
 /output
 features.csv
 logs/
+regex_selection_state.txt
+great_acc.txt

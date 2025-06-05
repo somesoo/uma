@@ -25,13 +25,13 @@ def parse_args():
                         help="Path to the regex patterns file")
     parser.add_argument("--window_size", type=int, default=3,
                         help="Window size for extracting DNA sequence")
-    parser.add_argument("--max_depth", type=int, default=10,
+    parser.add_argument("--max_depth", type=int, default=25,
                         help="Maximum depth of the decision tree")
     parser.add_argument("--min_samples", type=int, default=2,
                         help="Minimum number of samples to split (for custom implementation)")
     parser.add_argument("--test_size", type=float, default=0.2,
                         help="Fraction of data used for testing (between 0 and 1)")
-    parser.add_argument("--random_state", type=int, default=42,
+    parser.add_argument("--random_state", type=int, default=12,
                         help="Random seed for reproducibility")
     parser.add_argument("--impl", choices=["custom", "sklearn"], default="custom",
                         help="Decision tree implementation to use: 'custom' or 'sklearn'")
@@ -59,8 +59,7 @@ def main():
 
     # 1. Wczytaj dane DNA
     regexes = load_regex_patterns(regex_paths[args.data_type])
-    regex_len = len(regexes[1])
-    examples = load_dna_with_window(data_paths[args.data_type], args.data_type, regex_len)
+    examples = load_dna_with_window(data_paths[args.data_type], args.data_type)
 
     # 2. Wyodrębnij cechy
     if args.feature_type == "regex":

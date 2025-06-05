@@ -32,7 +32,7 @@ def generate_complex_regex(k: int, rng: Random) -> str:
     regex = ""
     for _ in range(k):
         roll = rng.random()
-        if roll < 0.5:
+        if roll < 0.2:
             # z 20% szansą wybierz grupę
             group_size = rng.randint(2, 3)
             group = "".join(rng.sample(DNA_ALPHABET, group_size))

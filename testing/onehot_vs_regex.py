@@ -28,7 +28,7 @@ def compare_onehot_vs_regex():
 
     random_state = 42
     test_size = 0.2
-    max_depth = 10
+    max_depth = 30
     min_samples = 2
 
     results = []
@@ -36,10 +36,10 @@ def compare_onehot_vs_regex():
     for data_type, feature_type, impl in configs:
         regexes = load_regex_patterns(regex_paths[data_type])
         regex_len = len(regexes[1])
-        examples = load_dna_with_window(data_paths[data_type], data_type, regex_len)
+        examples = load_dna_with_window(data_paths[data_type], data_type)
 
         if feature_type == "regex":
-            X, y = extract_features_full(examples, regexes)
+            X, y = extract_features(examples, regexes)
         else:
             X, y, _ = extract_one_hot_features(examples)     
         X_trval, X_test, y_trval, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=y)
