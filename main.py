@@ -18,7 +18,7 @@ def parse_args():
 
     parser.add_argument("--data_type", choices=["donor", "acceptor"], required=True,
                         help="Type of input data: 'donor' or 'acceptor'")
-    parser.add_argument("--data_path", required=True,
+    parser.add_argument("--data_path",
                         help="Path to the DNA data file")
     parser.add_argument("--regex_path", default="input_data/regex_patterns.txt",
                         help="Path to the regex patterns file")
@@ -36,7 +36,7 @@ def parse_args():
                         help="Decision tree implementation to use: 'custom' or 'sklearn'")
     parser.add_argument("--feature_type", choices=["regex", "onehot"], default="regex",
                         help="Feature type to use: 'regex' (default) or 'onehot'")
-    parser.add_argument("--regex_search", choices=["full", "window"], default="full",
+    parser.add_argument("--regex_search", choices=["full", "window"], default="window",
                         help="Feature type to use: 'full' (default) or 'window'")
 
 
@@ -46,18 +46,19 @@ def parse_args():
 def main():
     args = parse_args()
 
-    if args.data_type == "acceptor":
-        positions = [68]
-    elif args.data_type == "donor":
-        positions = [7]
-    else:
-        raise ValueError(f"Unsupported data_type: {args.data_type}")
+    regex_paths = {
+        "donor": "input_data/regex_donor.txt",
+        "acceptor": "input_data/regex_acceptor.txt"
+    }  
+    data_paths = {
+        "donor": "input_data/spliceDTrainKIS.dat",
+        "acceptor": "input_data/spliceATrainKIS.dat"
+    }
 
     # 1. Load DNA data
-    regexes = load_regex_patterns(args.regex_path)
+    regexes = load_regex_patterns(regex_paths[args.data_type])
     regex_len = len(regexes[1])
-    print("Regex length:", regex_len)
-    examples = load_dna_with_window(args.data_path, args.data_type, regex_len)
+    examples = load_dna_with_window(data_paths[args.data_type], args.data_type, regex_len)
 
     # 2. Extract features
     if args.feature_type == "regex":
@@ -97,8 +98,6 @@ def main():
 
     # 5. Train and evaluate
     model.fit(X_train, y_train)
-    print("\nValidation performance:")
-    evaluate(model, X_val, y_val)
     print("\nTest performance:")
     evaluate(model, X_test, y_test)
 
@@ -111,7 +110,7 @@ def main():
         plt.show()
     elif args.impl == "custom":
         print("\nText illustration of decision tree (custom):")
-        print(model.export_text(feature_names=feature_names))
+        #print(model.export_text(feature_names=feature_names))
 
 
 if __name__ == "__main__":

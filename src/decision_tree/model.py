@@ -35,7 +35,7 @@ class DecisionTree:
             p1 = counts.get(1, 0) / total
             return Node(value=Counter(y).most_common(1)[0][0], proba=[p0, p1])
 
-        feat_idxs = range(num_feats)
+        feat_idxs = range(num_feats)        
         best_feat, best_thr = best_split(X, y, feat_idxs, self.min_samples)
         if best_feat is None:
             counts = Counter(y); total = sum(counts.values())

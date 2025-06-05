@@ -57,7 +57,7 @@ def extract_features(
         
         for label, window_seq, *_ in examples:
             feats = [
-                int(re.fullmatch(rx, window_seq) is not None)
+                int(re.match(rx, window_seq) is not None)
                 for rx in regex_list
             ]
             writer.writerow(feats + [label])
@@ -67,9 +67,6 @@ def extract_features(
     return np.array(X, dtype=int), np.array(y, dtype=int)
 
 def extract_one_hot_features(examples):
-    """
-    Zwraca: X (macierz cech), y (etykiety), feature_names (nazwy cech binarnych)
-    """
     nucleotides = ["A", "C", "G", "T"]
     X = []
     y = []
@@ -84,7 +81,7 @@ def extract_one_hot_features(examples):
                 row.append(1 if char == nuc else 0)
         X.append(row)
         y.append(label)
-
+        #print(row, label)
     return np.array(X), np.array(y), feature_names
 
 

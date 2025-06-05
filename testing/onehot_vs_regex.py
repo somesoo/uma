@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 from src.data_loader import load_dna_with_window
 from src.regex_generator import load_regex_patterns
-from src.model_trainer import extract_features, extract_one_hot_features
+from src.model_trainer import extract_features, extract_features_full, extract_one_hot_features
 from src.decision_tree.model import DecisionTree
 
 
@@ -17,7 +17,10 @@ def compare_onehot_vs_regex():
         ["custom", "sklearn"]        # implementation
     ))
 
-    regex_path = "input_data/regex_patterns.txt"
+    regex_paths = {
+        "donor": "input_data/regex_donor.txt",
+        "acceptor": "input_data/regex_acceptor.txt"
+    }  
     data_paths = {
         "donor": "input_data/spliceDTrainKIS.dat",
         "acceptor": "input_data/spliceATrainKIS.dat"
@@ -31,12 +34,12 @@ def compare_onehot_vs_regex():
     results = []
 
     for data_type, feature_type, impl in configs:
-        regexes = load_regex_patterns(regex_path)
+        regexes = load_regex_patterns(regex_paths[data_type])
         regex_len = len(regexes[1])
         examples = load_dna_with_window(data_paths[data_type], data_type, regex_len)
 
         if feature_type == "regex":
-            X, y = extract_features(examples, regexes)
+            X, y = extract_features_full(examples, regexes)
         else:
             X, y, _ = extract_one_hot_features(examples)
 
