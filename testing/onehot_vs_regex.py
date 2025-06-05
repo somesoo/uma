@@ -41,8 +41,7 @@ def compare_onehot_vs_regex():
         if feature_type == "regex":
             X, y = extract_features_full(examples, regexes)
         else:
-            X, y, _ = extract_one_hot_features(examples)
-
+            X, y, _ = extract_one_hot_features(examples)     
         X_trval, X_test, y_trval, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=y)
         X_train, X_val, y_train, y_val = train_test_split(X_trval, y_trval, test_size=test_size, random_state=random_state, stratify=y_trval)
 
