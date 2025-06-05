@@ -81,7 +81,7 @@ def extract_one_hot_features(examples):
                 row.append(1 if char == nuc else 0)
         X.append(row)
         y.append(label)
-        print(row, label)
+        #print(row, label)
     return np.array(X), np.array(y), feature_names
 
 
