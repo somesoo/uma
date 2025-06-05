@@ -2,7 +2,7 @@ from typing import List, Tuple
 
 Example = Tuple[int, str, str, str]
 
-def load_dna_with_window(filepath: str, dataset_type: str, regex_len: str) -> List[Example]:
+def load_dna_with_window(filepath: str, dataset_type: str) -> List[Example]:
     examples = []
     with open(filepath, "r") as f:
         lines = f.read().splitlines()

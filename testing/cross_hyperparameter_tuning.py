@@ -27,7 +27,7 @@ def tune_hyperparams_crossval(
     print(f"\nTuning for {data_label.upper()} with {n_splits}-fold CV")
 
     regexes = load_regex_patterns(regex_path)
-    examples = load_dna_with_window(data_path, data_label, len(regexes[0]))
+    examples = load_dna_with_window(data_path, data_label)
 
     if feature_type == "regex":
         if regex_search == "full":
@@ -69,6 +69,7 @@ def tune_hyperparams_crossval(
         scores = np.array(scores)
         mean_scores = scores.mean(axis=0)
         results.append((md, ms, *mean_scores))
+        print(results)
 
     results.sort(key=lambda x: (x[4], x[2]), reverse=True)
     best = results[0]
@@ -91,7 +92,7 @@ if __name__ == "__main__":
             max_depths=[3, 5, 10, 15, 20, 30],
             min_samples_list=[2, 5, 10, 20, 30],
             n_splits=10,
-            random_state=42,
+            random_state=12,
             feature_type="regex",
             regex_search="window"
         )
