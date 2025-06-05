@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak & Jonatan Kasperczak
+
 import numpy as np
 from sklearn.utils import resample
 from collections import Counter

@@ -1,3 +1,5 @@
+### Jonatan Kasperczak
+
 from typing import List
 from itertools import product
 

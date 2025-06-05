@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak & Jonatan Kasperczak
+
 import numpy as np
 import time
 from collections import Counter

@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak
+
 import os
 import re
 import joblib

@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak & Jonatan Kasperczak
+
 import numpy as np
 from itertools import product
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, f1_score

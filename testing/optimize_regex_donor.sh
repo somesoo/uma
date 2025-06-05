@@ -1,3 +1,5 @@
+### Jonatan Kasperczak
+
 #!/bin/bash
 
 echo 'Starting optimization loop...'

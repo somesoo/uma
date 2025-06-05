@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak & Jonatan Kasperczak
+
 import argparse
 import numpy as np
 from collections import Counter

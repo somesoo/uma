@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak
+
 import numpy as np
 from collections import Counter
 from src.decision_tree.metrics_func import best_split

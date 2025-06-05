@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak & Jonatan Kasperczak
+
 from typing import List, Tuple
 
 Example = Tuple[int, str, str, str]
@@ -17,12 +19,7 @@ def load_dna_with_window(filepath: str, dataset_type: str) -> List[Example]:
             elif dataset_type == "acceptor":
                 full_seq = full_seq[:68] + full_seq[70:]
             start = boundary_pos
-            #if end <= len(full_seq):  # zabezpieczenie
-                #print(full_seq)
             window_seq = full_seq[start:]
-            #print(window_seq)
             examples.append((label, window_seq, dataset_type, full_seq))
-            #else:
-                #print(f"Ostrzeżenie: sekwencja z etykietą {label} za krótka (len={len(full_seq)}), pominięto.")
 
     return examples

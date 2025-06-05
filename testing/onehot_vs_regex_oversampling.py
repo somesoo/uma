@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak & Jonatan Kasperczak
+
 import itertools
 import numpy as np
 import pandas as pd

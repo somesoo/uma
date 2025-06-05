@@ -1,3 +1,5 @@
+### Autor: Radosław Kasprzak & Jonatan Kasperczak
+ 
 import itertools
 import os
 import pandas as pd
