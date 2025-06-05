@@ -25,11 +25,10 @@ def tune_hyperparameters(
     else:
         raise ValueError(f"Unsupported data_label: {data_label}")
 
-#    print(f"\nTuning hyperparameters for '{data_label}' (positions = {positions})")
+    print(f"\nTuning hyperparameters for '{data_label}' (positions = {positions})")
 
-    # 1) Load and prepare features
     regexes  = load_regex_patterns(regex_path)
-    examples = load_dna_with_window(data_path, data_label, len(regexes[1]))
+    examples = load_dna_with_window(data_path, data_label)
     X, y     = extract_features(examples, regexes)
 
     X_trval, X_test,  y_trval, y_test  = train_test_split(
@@ -39,7 +38,6 @@ def tune_hyperparameters(
         X_trval, y_trval, test_size=test_size, random_state=random_state, stratify=y_trval
     )
 
-    # 3) Grid search by max_depth and min_samples
     results = []
     for md, ms in product(max_depths, min_samples_list):
 
@@ -75,7 +73,6 @@ def tune_hyperparameters(
         mean_metrics = metrics.mean(axis=0)
         results.append((md, ms, *mean_metrics))
 
-    # Sorting first by recall and second by accuracy
     results.sort(key=lambda x: (x[4], x[2]), reverse=True)
 
     print(f"\nBEST for {data_label} → max_depth={results[0][0]}, min_samples={results[0][1]}, Recall={results[0][4]:.2f}, F1={results[0][5]:.2f}\n")

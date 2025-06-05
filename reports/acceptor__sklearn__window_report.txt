@@ -1,0 +1,15 @@
+acceptor | sklearn | window
+
+Confusion Matrix:
+[[TN=907  FP=28]
+ [FN=193  TP=30]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.825     0.970     0.891       935
+           1      0.517     0.135     0.214       223
+
+    accuracy                          0.809      1158
+   macro avg      0.671     0.552     0.552      1158
+weighted avg      0.765     0.809     0.761      1158

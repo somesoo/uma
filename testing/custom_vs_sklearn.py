@@ -44,19 +44,16 @@ def compare_models(
         "acceptor": "input_data/regex_acceptor.txt"
     }  
     regexes = load_regex_patterns(regex_paths[data_label])
-    # 1. Load and extract features
-    examples = load_dna_with_window(data_path[data_label], data_label, len(regexes[0]))
+    examples = load_dna_with_window(data_path[data_label], data_label)
 
     X, y     = extract_features(examples, regexes)
     print("Class balance:", Counter(y))
 
-    # 2. Split dataset
     X_trval, X_test, y_trval, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state, stratify=y)
     X_train, X_val, y_train, y_val = train_test_split(X_trval, y_trval, test_size=test_size, random_state=random_state, stratify=y_trval)
 
     n_feats = int(np.sqrt(X.shape[1]))
 
-    # 3. Custom Tree
     print("\n--- Custom DecisionTree ---")
     start = time.time()
     custom_clf = DecisionTree(max_depth=max_depth, min_samples=min_samples, n_feats=n_feats, random_state=random_state)
@@ -66,7 +63,6 @@ def compare_models(
     evaluate(custom_clf, X_val, y_val, "Custom - Val")
     evaluate(custom_clf, X_test, y_test, "Custom - Test")
 
-    # 4. Sklearn Tree
     print("\n--- sklearn DecisionTreeClassifier ---")
     start = time.time()
     sk_clf = DecisionTreeClassifier(max_depth=max_depth, random_state=random_state)
@@ -76,7 +72,6 @@ def compare_models(
     evaluate(sk_clf, X_val, y_val, "sklearn - Val")
     evaluate(sk_clf, X_test, y_test, "sklearn - Test")
 
-    # 5. Summary
     print("\n=== Summary ===")
     print(f"Custom  training time:  {train_time_custom:.2f} s")
     print(f"sklearn training time: {train_time_sklearn:.2f} s")

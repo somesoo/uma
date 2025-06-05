@@ -1,0 +1,15 @@
+acceptor | custom | full
+
+Confusion Matrix:
+[[TN=715  FP=220]
+ [FN=173  TP=50]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.805     0.765     0.784       935
+           1      0.185     0.224     0.203       223
+
+    accuracy                          0.661      1158
+   macro avg      0.495     0.494     0.494      1158
+weighted avg      0.686     0.661     0.672      1158

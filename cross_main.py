@@ -21,7 +21,7 @@ def parse_args():
     parser.add_argument("--max_depth", type=int, default=30)
     parser.add_argument("--min_samples", type=int, default=2)
     parser.add_argument("--n_splits", type=int, default=10)
-    parser.add_argument("--random_state", type=int, default=42)
+    parser.add_argument("--random_state", type=int, default=12)
     parser.add_argument("--impl", choices=["custom", "sklearn"], default="custom")
     parser.add_argument("--feature_type", choices=["regex", "onehot"], default="regex")
     parser.add_argument("--regex_search", choices=["full", "window"], default="window")

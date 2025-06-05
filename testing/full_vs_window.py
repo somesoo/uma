@@ -70,17 +70,16 @@ def compare_window_vs_full():
         "acceptor": "input_data/spliceATrainKIS.dat"
     }
 
-    random_state = 42
+    random_state = 12
     test_size = 0.2
-    max_depth = 10
+    max_depth = 25
     min_samples = 2
 
     results = []
 
     for data_type, feature_type, impl in configs:
         regexes = load_regex_patterns(regex_paths[data_type])
-        regex_len = len(regexes[0])
-        examples = load_dna_with_window(data_paths[data_type], data_type, regex_len)
+        examples = load_dna_with_window(data_paths[data_type], data_type)
 
         if feature_type == "full":
             X, y = extract_features_full(examples, regexes, output_file="features_full.csv")
@@ -116,7 +115,6 @@ def compare_window_vs_full():
             "f1_score": f1,
         })
 
-    # Tabela podsumowująca
     df = pd.DataFrame(results)
     df_pivot = df.pivot_table(
         index=["data_type", "implementation"],

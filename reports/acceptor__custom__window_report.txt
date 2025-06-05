@@ -1,0 +1,15 @@
+acceptor | custom | window
+
+Confusion Matrix:
+[[TN=883  FP=52]
+ [FN=169  TP=54]]
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0      0.839     0.944     0.889       935
+           1      0.509     0.242     0.328       223
+
+    accuracy                          0.809      1158
+   macro avg      0.674     0.593     0.609      1158
+weighted avg      0.776     0.809     0.781      1158

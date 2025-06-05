@@ -84,9 +84,9 @@ def compare_onehot_vs_regex():
             y_train_bal = y_train
 
         # Dla pewności mieszamy ponownie kolejność po zbalansowaniu
-        # perm = np.random.RandomState(random_state).permutation(len(y_train_bal))
-        # X_train_bal = X_train_bal[perm]
-        # y_train_bal = y_train_bal[perm]
+        perm = np.random.RandomState(random_state).permutation(len(y_train_bal))
+        X_train_bal = X_train_bal[perm]
+        y_train_bal = y_train_bal[perm]
 
         # 4. Wybór i trenowanie modelu na zbalansowanym zbiorze treningowym
         if impl == "custom":
