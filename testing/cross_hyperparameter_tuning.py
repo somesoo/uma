@@ -75,7 +75,7 @@ def tune_hyperparams_crossval(
 
     results.sort(key=lambda x: (x[4], x[2]), reverse=True)
     best = results[0]
-    print(f"\nBEST: max_depth={best[0]}, min_samples={best[1]}, Recall={best[4]:.3f}, F1={best[5]:.3f}")
+    print(f"\nBEST: max_depth={best[0]}, min_samples={best[1]}, Recall={best[4]:.2f}, F1={best[5]:.2f}")
 
     df = pd.DataFrame(results, columns=["max_depth", "min_samples", "accuracy", "precision", "recall", "f1_score"])
     print("\nFull Results:")

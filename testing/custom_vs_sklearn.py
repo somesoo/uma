@@ -23,20 +23,14 @@ def evaluate(model, X, y_true, name=""):
 
 def compare_models(
     data_label: str,
-    window_size: int = 5,
-    max_depth: int = 10,
+    max_depth: int = 30,
     min_samples: int = 2,
     test_size: float = 0.2,
-    random_state: int = 42
+    random_state: int = 12
 ):
     print(f"\n=== Comparing models for '{data_label}' dataset ===")
 
-    if data_label.lower() == "acceptor":
-        positions = [68]
-    elif data_label.lower() == "donor":
-        positions = [7]
-    else:
-        raise ValueError(f"Unknown data_label: {data_label}. Expected 'acceptor' or 'donor'.")
+
     data_path = {
         "donor": "input_data/spliceDTrainKIS.dat",
         "acceptor": "input_data/spliceATrainKIS.dat"
