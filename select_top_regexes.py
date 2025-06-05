@@ -4,7 +4,7 @@ TOP_K = 100
 BATCH_SIZE = 10
 SCORES_FILE = "scores.tsv"
 POOL_FILE = "regex_pool.txt"
-OUTPUT_FILE = "input_data/regex_acceptor.txt"
+OUTPUT_FILE = "input_data/regex_donor.txt"
 STATE_FILE = "regex_selection_state.txt"  # śledzenie pozycji w puli
 
 def load_used_regexes():
