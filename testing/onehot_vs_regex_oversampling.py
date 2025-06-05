@@ -30,9 +30,9 @@ def compare_onehot_vs_regex():
         "acceptor": "input_data/spliceATrainKIS.dat"
     }
 
-    random_state = 42
+    random_state = 12
     test_size = 0.2
-    max_depth = 10
+    max_depth = 30
     min_samples = 2
 
     results = []

@@ -1,4 +1,3 @@
-
 # Polecenie
 
 Drzewo decyzyjne w zadaniu klasyfikacji miejsc rozcięcia w sekwencji DNA. Należy użyć wyrażenia regularnego w testach. Wyrażenia regularne powinny być wczytane z pliku tekstowego. Dopasowanie wyrażenia sprawdzamy na rozważanej pozycji w sekwencji, np. jeśli rozważamy atrybut numer 3, a wyrażenie to "A.T", to w sekwencji "GGAGT" nastąpi dopasowanie, a w sekwencji "AGTGG" już nie. Więcej informacji o specyfice problemu znaleźć można w: [OpisDNA](https://staff.elka.pw.edu.pl/~rbiedrzy/UMA/opisDNA.html). Dane do pobrania- [donory](https://staff.elka.pw.edu.pl/~rbiedrzy/UMA/spliceDTrainKIS.dat), [akceptory](https://staff.elka.pw.edu.pl/~rbiedrzy/UMA/spliceATrainKIS.dat). Przed rozpoczęciem realizacji projektu proszę zapoznać się z zawartością: [LINK](https://staff.elka.pw.edu.pl/~rbiedrzy/UMA/index.html).
@@ -26,12 +25,12 @@ Plik main.py pozwala trenować i testować klasyfikator DNA na danych typu donor
 Przykład – własne drzewo (domyślnie):
 
 ```bash
-python main.py --data_type donor --data_path input_data/spliceDTrainKIS.dat
+python main.py --data_type donor
 ```
 Przykład – drzewo z sklearn:
 
 ```bash
-python main.py --impl sklearn --data_type acceptor --data_path input_data/spliceATrainKIS.dat --max_depth 15
+python main.py --impl sklearn --data_type acceptor --max_depth 15
 ```
 Dodatkowe argumenty:
 
