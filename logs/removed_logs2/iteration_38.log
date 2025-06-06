@@ -1,0 +1,336 @@
+--- Running main.py (iteration 38) ---
+Class distribution: Counter({np.int64(0): 4672, np.int64(1): 1116})
+
+=== Using: Custom DecisionTree ===
+
+Test performance:
+Accuracy:  0.808
+Precision: 0.571
+Recall:    0.018
+AUC:       0.507
+
+=== Classification report ===
+              precision    recall  f1-score   support
+
+           0      0.810     0.997     0.894       935
+           1      0.571     0.018     0.035       223
+
+    accuracy                          0.808      1158
+   macro avg      0.691     0.507     0.464      1158
+weighted avg      0.764     0.808     0.728      1158
+
+
+Text illustration of decision tree (custom):
+--- Evaluating regex performance ---
+
+100 regexów najczęściej dopasowanych dla klasy 1:
+
+regex 0:	GTA...	46
+regex 1:	CT.AG.TA.TATA	0
+regex 2:	ACGCTTCCTGCTT	0
+regex 3:	C..GGCGTTCCGT	0
+regex 4:	GAACT[GCA]C[CA]CCTAA	0
+regex 5:	TCCGGCCCAACGC	0
+regex 6:	.TTATGCC.CTG.	0
+regex 7:	TAG.GTTGA..CC	0
+regex 8:	AATATATACCTCC	0
+regex 9:	GA.GCG.TCCA.A	0
+regex 10:	GAG.ATCTCGGAG	0
+regex 11:	TA[CAG]CTACCCTT[AG]C	0
+regex 12:	CGTAACGACCAAG	0
+regex 13:	T.AGTAGTG..CC	0
+regex 14:	CTCT.CAAAAAGC	0
+regex 15:	TGAAAGTACCTCC	0
+regex 16:	GCCTGGTGG..CT	0
+regex 17:	ACTCCG..GTCCA	0
+regex 18:	GG.TGCGGCTTC.	0
+regex 19:	AAGCCCGCGATC.	0
+regex 20:	GCC.TCGG.CC.A	0
+regex 21:	GGACCATCGGGAC	0
+regex 22:	CCCGGTT[TA][ACG]ATAC	0
+regex 23:	CTTAT.ACAGTAG	0
+regex 24:	TTT.GT.TCGCGT	0
+regex 25:	A[CAT]CTGGTTCA[GA]GA	0
+regex 26:	TCAGAGCTT.A..	0
+regex 27:	G.AAGTTGCCCAG	0
+regex 28:	GGTG.ACGGA.T.	0
+regex 29:	.CGCGAAC.CATA	0
+regex 30:	TTGC[ACG]TGAC[TC][GCT]A[AG]	0
+regex 31:	TT.AAA..GCTAT	0
+regex 32:	CGCCAGTAGAATG	0
+regex 33:	AT.ACATC.AGG.	0
+regex 34:	GTGGGGACCGTCC	0
+regex 35:	TTACC.AGT.G.A	0
+regex 36:	ACG.CTACC.GTC	0
+regex 37:	CTG.TATA.CGT.	0
+regex 38:	CCCTCGTCACCTG	0
+regex 39:	TTACAG[ACT]CATGCC	0
+regex 40:	AAAT.ATACAGCG	0
+regex 41:	GT[ACG]AAAATCTT[AC][AT]	0
+regex 42:	.TCGGTGAG.C.A	0
+regex 43:	ACA.A.CCGCGAT	0
+regex 44:	[TA]ACC[CGA]TGGTACA[GA]	0
+regex 45:	ATCG.A.CCATAG	0
+regex 46:	.CCTTAAACA.TG	0
+regex 47:	ACGC.GA.TA.GA	0
+regex 48:	G.C.GTCCTT.AC	0
+regex 49:	TTGAACCCGTACG	0
+regex 50:	GA[GCT]CA[GA]TTCTC[CTA]A	0
+regex 51:	GTT.GCGGCATGC	0
+regex 52:	C.TAGCGTGAAG.	0
+regex 53:	AGA.AAACCTAGA	0
+regex 54:	GCTG.GGACA.GA	0
+regex 55:	GC..GGATC.TCC	0
+regex 56:	G.GT.CACGCAT.	0
+regex 57:	GACAGGGG..A.G	0
+regex 58:	GA[GTC]ACCC[GC]ACAGA	0
+regex 59:	CTG.TATG.GGAT	0
+regex 60:	.AGTGCCC.A.AG	0
+regex 61:	CGCCCTATAGTGT	0
+regex 62:	A.AGCCCCAG.GT	0
+regex 63:	AAGTGGGA..ACG	0
+regex 64:	.CTCGCG.GCC.T	0
+regex 65:	GGG.AAC..ACTG	0
+regex 66:	ATA.ATAC.TACT	0
+regex 67:	AT..CTGTA.GCG	0
+regex 68:	.CTG.CGGATTCC	0
+regex 69:	TA.AATTGA.GTT	0
+regex 70:	TTCGTGG[CAG]GTT[AT]C	0
+regex 71:	A..GGGCCGTAA.	0
+regex 72:	CGTAGAACCTGCC	0
+regex 73:	.T.ATATCTAAT.	0
+regex 74:	A.CCC.GGACCC.	0
+regex 75:	GCG[TAG]AAGGTGGTT	0
+regex 76:	G[AG]GGTTCCA[GTC]AAC	0
+regex 77:	CCGCACTATTACG	0
+regex 78:	AA[TG]GAG[ATC][TG]TCATG	0
+regex 79:	AAGTTGTCGCTTG	0
+regex 80:	CTTGCCGATTCAA	0
+regex 81:	GGGT.GGTAT.A.	0
+regex 82:	A.TCTTCTGGACT	0
+regex 83:	ATTCGAACCTT.T	0
+regex 84:	CACGTAACGAGAA	0
+regex 85:	.A.TGTAGATGCG	0
+regex 86:	GTCC.GTGCT.CC	0
+regex 87:	AATT[CT]CAGCCCCG	0
+regex 88:	C.ATCGA.GAC.T	0
+regex 89:	AAGCTCTGCC.TG	0
+regex 90:	AG.CTTC.C.GAT	0
+regex 91:	[GA]C[CGA][ATC]TTGG[GTC]T[GC]TA	0
+regex 92:	.CGTT.CATC.AG	0
+regex 93:	AACATA.ATAA.C	0
+regex 94:	TGTCCGAAGG..G	0
+regex 95:	CTGAGCTGCACAT	0
+regex 96:	GTT.C.GAACC.T	0
+regex 97:	CCT[TCA]GCC[TA][TAG][AG]T[ACT]G	0
+regex 98:	CG.TGTGTGGG.T	0
+regex 99:	ACGGGGTATCTCA	0
+
+100 regexów najczęściej dopasowanych dla klasy 0:
+
+regex 0:	GTA...	28
+regex 1:	CT.AG.TA.TATA	0
+regex 2:	ACGCTTCCTGCTT	0
+regex 3:	C..GGCGTTCCGT	0
+regex 4:	GAACT[GCA]C[CA]CCTAA	0
+regex 5:	TCCGGCCCAACGC	0
+regex 6:	.TTATGCC.CTG.	0
+regex 7:	TAG.GTTGA..CC	0
+regex 8:	AATATATACCTCC	0
+regex 9:	GA.GCG.TCCA.A	0
+regex 10:	GAG.ATCTCGGAG	0
+regex 11:	TA[CAG]CTACCCTT[AG]C	0
+regex 12:	CGTAACGACCAAG	0
+regex 13:	T.AGTAGTG..CC	0
+regex 14:	CTCT.CAAAAAGC	0
+regex 15:	TGAAAGTACCTCC	0
+regex 16:	GCCTGGTGG..CT	0
+regex 17:	ACTCCG..GTCCA	0
+regex 18:	GG.TGCGGCTTC.	0
+regex 19:	AAGCCCGCGATC.	0
+regex 20:	GCC.TCGG.CC.A	0
+regex 21:	GGACCATCGGGAC	0
+regex 22:	CCCGGTT[TA][ACG]ATAC	0
+regex 23:	CTTAT.ACAGTAG	0
+regex 24:	TTT.GT.TCGCGT	0
+regex 25:	A[CAT]CTGGTTCA[GA]GA	0
+regex 26:	TCAGAGCTT.A..	0
+regex 27:	G.AAGTTGCCCAG	0
+regex 28:	GGTG.ACGGA.T.	0
+regex 29:	.CGCGAAC.CATA	0
+regex 30:	TTGC[ACG]TGAC[TC][GCT]A[AG]	0
+regex 31:	TT.AAA..GCTAT	0
+regex 32:	CGCCAGTAGAATG	0
+regex 33:	AT.ACATC.AGG.	0
+regex 34:	GTGGGGACCGTCC	0
+regex 35:	TTACC.AGT.G.A	0
+regex 36:	ACG.CTACC.GTC	0
+regex 37:	CTG.TATA.CGT.	0
+regex 38:	CCCTCGTCACCTG	0
+regex 39:	TTACAG[ACT]CATGCC	0
+regex 40:	AAAT.ATACAGCG	0
+regex 41:	GT[ACG]AAAATCTT[AC][AT]	0
+regex 42:	.TCGGTGAG.C.A	0
+regex 43:	ACA.A.CCGCGAT	0
+regex 44:	[TA]ACC[CGA]TGGTACA[GA]	0
+regex 45:	ATCG.A.CCATAG	0
+regex 46:	.CCTTAAACA.TG	0
+regex 47:	ACGC.GA.TA.GA	0
+regex 48:	G.C.GTCCTT.AC	0
+regex 49:	TTGAACCCGTACG	0
+regex 50:	GA[GCT]CA[GA]TTCTC[CTA]A	0
+regex 51:	GTT.GCGGCATGC	0
+regex 52:	C.TAGCGTGAAG.	0
+regex 53:	AGA.AAACCTAGA	0
+regex 54:	GCTG.GGACA.GA	0
+regex 55:	GC..GGATC.TCC	0
+regex 56:	G.GT.CACGCAT.	0
+regex 57:	GACAGGGG..A.G	0
+regex 58:	GA[GTC]ACCC[GC]ACAGA	0
+regex 59:	CTG.TATG.GGAT	0
+regex 60:	.AGTGCCC.A.AG	0
+regex 61:	CGCCCTATAGTGT	0
+regex 62:	A.AGCCCCAG.GT	0
+regex 63:	AAGTGGGA..ACG	0
+regex 64:	.CTCGCG.GCC.T	0
+regex 65:	GGG.AAC..ACTG	0
+regex 66:	ATA.ATAC.TACT	0
+regex 67:	AT..CTGTA.GCG	0
+regex 68:	.CTG.CGGATTCC	0
+regex 69:	TA.AATTGA.GTT	0
+regex 70:	TTCGTGG[CAG]GTT[AT]C	0
+regex 71:	A..GGGCCGTAA.	0
+regex 72:	CGTAGAACCTGCC	0
+regex 73:	.T.ATATCTAAT.	0
+regex 74:	A.CCC.GGACCC.	0
+regex 75:	GCG[TAG]AAGGTGGTT	0
+regex 76:	G[AG]GGTTCCA[GTC]AAC	0
+regex 77:	CCGCACTATTACG	0
+regex 78:	AA[TG]GAG[ATC][TG]TCATG	0
+regex 79:	AAGTTGTCGCTTG	0
+regex 80:	CTTGCCGATTCAA	0
+regex 81:	GGGT.GGTAT.A.	0
+regex 82:	A.TCTTCTGGACT	0
+regex 83:	ATTCGAACCTT.T	0
+regex 84:	CACGTAACGAGAA	0
+regex 85:	.A.TGTAGATGCG	0
+regex 86:	GTCC.GTGCT.CC	0
+regex 87:	AATT[CT]CAGCCCCG	0
+regex 88:	C.ATCGA.GAC.T	0
+regex 89:	AAGCTCTGCC.TG	0
+regex 90:	AG.CTTC.C.GAT	0
+regex 91:	[GA]C[CGA][ATC]TTGG[GTC]T[GC]TA	0
+regex 92:	.CGTT.CATC.AG	0
+regex 93:	AACATA.ATAA.C	0
+regex 94:	TGTCCGAAGG..G	0
+regex 95:	CTGAGCTGCACAT	0
+regex 96:	GTT.C.GAACC.T	0
+regex 97:	CCT[TCA]GCC[TA][TAG][AG]T[ACT]G	0
+regex 98:	CG.TGTGTGGG.T	0
+regex 99:	ACGGGGTATCTCA	0
+
+100 regexów z największą łączną liczbą dopasowań (klasa 1 + 0):
+
+regex 0:	GTA...	klasa 1: 46	klasa 0: 28	razem: 74
+regex 1:	CT.AG.TA.TATA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 2:	ACGCTTCCTGCTT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 3:	C..GGCGTTCCGT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 4:	GAACT[GCA]C[CA]CCTAA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 5:	TCCGGCCCAACGC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 6:	.TTATGCC.CTG.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 7:	TAG.GTTGA..CC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 8:	AATATATACCTCC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 9:	GA.GCG.TCCA.A	klasa 1: 0	klasa 0: 0	razem: 0
+regex 10:	GAG.ATCTCGGAG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 11:	TA[CAG]CTACCCTT[AG]C	klasa 1: 0	klasa 0: 0	razem: 0
+regex 12:	CGTAACGACCAAG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 13:	T.AGTAGTG..CC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 14:	CTCT.CAAAAAGC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 15:	TGAAAGTACCTCC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 16:	GCCTGGTGG..CT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 17:	ACTCCG..GTCCA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 18:	GG.TGCGGCTTC.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 19:	AAGCCCGCGATC.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 20:	GCC.TCGG.CC.A	klasa 1: 0	klasa 0: 0	razem: 0
+regex 21:	GGACCATCGGGAC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 22:	CCCGGTT[TA][ACG]ATAC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 23:	CTTAT.ACAGTAG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 24:	TTT.GT.TCGCGT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 25:	A[CAT]CTGGTTCA[GA]GA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 26:	TCAGAGCTT.A..	klasa 1: 0	klasa 0: 0	razem: 0
+regex 27:	G.AAGTTGCCCAG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 28:	GGTG.ACGGA.T.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 29:	.CGCGAAC.CATA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 30:	TTGC[ACG]TGAC[TC][GCT]A[AG]	klasa 1: 0	klasa 0: 0	razem: 0
+regex 31:	TT.AAA..GCTAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 32:	CGCCAGTAGAATG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 33:	AT.ACATC.AGG.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 34:	GTGGGGACCGTCC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 35:	TTACC.AGT.G.A	klasa 1: 0	klasa 0: 0	razem: 0
+regex 36:	ACG.CTACC.GTC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 37:	CTG.TATA.CGT.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 38:	CCCTCGTCACCTG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 39:	TTACAG[ACT]CATGCC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 40:	AAAT.ATACAGCG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 41:	GT[ACG]AAAATCTT[AC][AT]	klasa 1: 0	klasa 0: 0	razem: 0
+regex 42:	.TCGGTGAG.C.A	klasa 1: 0	klasa 0: 0	razem: 0
+regex 43:	ACA.A.CCGCGAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 44:	[TA]ACC[CGA]TGGTACA[GA]	klasa 1: 0	klasa 0: 0	razem: 0
+regex 45:	ATCG.A.CCATAG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 46:	.CCTTAAACA.TG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 47:	ACGC.GA.TA.GA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 48:	G.C.GTCCTT.AC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 49:	TTGAACCCGTACG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 50:	GA[GCT]CA[GA]TTCTC[CTA]A	klasa 1: 0	klasa 0: 0	razem: 0
+regex 51:	GTT.GCGGCATGC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 52:	C.TAGCGTGAAG.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 53:	AGA.AAACCTAGA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 54:	GCTG.GGACA.GA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 55:	GC..GGATC.TCC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 56:	G.GT.CACGCAT.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 57:	GACAGGGG..A.G	klasa 1: 0	klasa 0: 0	razem: 0
+regex 58:	GA[GTC]ACCC[GC]ACAGA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 59:	CTG.TATG.GGAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 60:	.AGTGCCC.A.AG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 61:	CGCCCTATAGTGT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 62:	A.AGCCCCAG.GT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 63:	AAGTGGGA..ACG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 64:	.CTCGCG.GCC.T	klasa 1: 0	klasa 0: 0	razem: 0
+regex 65:	GGG.AAC..ACTG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 66:	ATA.ATAC.TACT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 67:	AT..CTGTA.GCG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 68:	.CTG.CGGATTCC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 69:	TA.AATTGA.GTT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 70:	TTCGTGG[CAG]GTT[AT]C	klasa 1: 0	klasa 0: 0	razem: 0
+regex 71:	A..GGGCCGTAA.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 72:	CGTAGAACCTGCC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 73:	.T.ATATCTAAT.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 74:	A.CCC.GGACCC.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 75:	GCG[TAG]AAGGTGGTT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 76:	G[AG]GGTTCCA[GTC]AAC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 77:	CCGCACTATTACG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 78:	AA[TG]GAG[ATC][TG]TCATG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 79:	AAGTTGTCGCTTG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 80:	CTTGCCGATTCAA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 81:	GGGT.GGTAT.A.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 82:	A.TCTTCTGGACT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 83:	ATTCGAACCTT.T	klasa 1: 0	klasa 0: 0	razem: 0
+regex 84:	CACGTAACGAGAA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 85:	.A.TGTAGATGCG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 86:	GTCC.GTGCT.CC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 87:	AATT[CT]CAGCCCCG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 88:	C.ATCGA.GAC.T	klasa 1: 0	klasa 0: 0	razem: 0
+regex 89:	AAGCTCTGCC.TG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 90:	AG.CTTC.C.GAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 91:	[GA]C[CGA][ATC]TTGG[GTC]T[GC]TA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 92:	.CGTT.CATC.AG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 93:	AACATA.ATAA.C	klasa 1: 0	klasa 0: 0	razem: 0
+regex 94:	TGTCCGAAGG..G	klasa 1: 0	klasa 0: 0	razem: 0
+regex 95:	CTGAGCTGCACAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 96:	GTT.C.GAACC.T	klasa 1: 0	klasa 0: 0	razem: 0
+regex 97:	CCT[TCA]GCC[TA][TAG][AG]T[ACT]G	klasa 1: 0	klasa 0: 0	razem: 0
+regex 98:	CG.TGTGTGGG.T	klasa 1: 0	klasa 0: 0	razem: 0
+regex 99:	ACGGGGTATCTCA	klasa 1: 0	klasa 0: 0	razem: 0
+--- Selecting top regexes ---
+Adding 100 new regexes from index 0
+Saved 103 regexes to input_data/regex_acceptor.txt

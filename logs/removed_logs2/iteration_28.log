@@ -1,0 +1,72 @@
+--- Running main.py (iteration 28) ---
+Class distribution: Counter({np.int64(0): 4672, np.int64(1): 1116})
+
+=== Using: Custom DecisionTree ===
+
+Test performance:
+Accuracy:  0.808
+Precision: 0.571
+Recall:    0.018
+AUC:       0.507
+
+=== Classification report ===
+              precision    recall  f1-score   support
+
+           0      0.810     0.997     0.894       935
+           1      0.571     0.018     0.035       223
+
+    accuracy                          0.808      1158
+   macro avg      0.691     0.507     0.464      1158
+weighted avg      0.764     0.808     0.728      1158
+
+
+Text illustration of decision tree (custom):
+--- Evaluating regex performance ---
+
+100 regexów najczęściej dopasowanych dla klasy 1:
+
+regex 0:	GTA...	46
+regex 1:	CC.CC.GCC.AAT	0
+regex 2:	TCGT.G.GAGAGA	0
+regex 3:	TG.GCCCCCTATA	0
+regex 4:	AG[TCA]GTATAGGA[GCA]C	0
+regex 5:	G.GCGAGATAG.T	0
+regex 6:	TCCTTGGTT.T..	0
+regex 7:	GA.AGTTCCT.A.	0
+regex 8:	GCTATTTTCAACC	0
+regex 9:	ATCGAGGCCC[TAC]AG	0
+regex 10:	GAGGATTTGTACC	0
+regex 11:	.TACCCC.TCCGT	0
+
+100 regexów najczęściej dopasowanych dla klasy 0:
+
+regex 0:	GTA...	28
+regex 1:	CC.CC.GCC.AAT	0
+regex 2:	TCGT.G.GAGAGA	0
+regex 3:	TG.GCCCCCTATA	0
+regex 4:	AG[TCA]GTATAGGA[GCA]C	0
+regex 5:	G.GCGAGATAG.T	0
+regex 6:	TCCTTGGTT.T..	0
+regex 7:	GA.AGTTCCT.A.	0
+regex 8:	GCTATTTTCAACC	0
+regex 9:	ATCGAGGCCC[TAC]AG	0
+regex 10:	GAGGATTTGTACC	0
+regex 11:	.TACCCC.TCCGT	0
+
+100 regexów z największą łączną liczbą dopasowań (klasa 1 + 0):
+
+regex 0:	GTA...	klasa 1: 46	klasa 0: 28	razem: 74
+regex 1:	CC.CC.GCC.AAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 2:	TCGT.G.GAGAGA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 3:	TG.GCCCCCTATA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 4:	AG[TCA]GTATAGGA[GCA]C	klasa 1: 0	klasa 0: 0	razem: 0
+regex 5:	G.GCGAGATAG.T	klasa 1: 0	klasa 0: 0	razem: 0
+regex 6:	TCCTTGGTT.T..	klasa 1: 0	klasa 0: 0	razem: 0
+regex 7:	GA.AGTTCCT.A.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 8:	GCTATTTTCAACC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 9:	ATCGAGGCCC[TAC]AG	klasa 1: 0	klasa 0: 0	razem: 0
+regex 10:	GAGGATTTGTACC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 11:	.TACCCC.TCCGT	klasa 1: 0	klasa 0: 0	razem: 0
+--- Selecting top regexes ---
+Adding 10 new regexes from index 5380
+Saved 12 regexes to input_data/regex_acceptor.txt

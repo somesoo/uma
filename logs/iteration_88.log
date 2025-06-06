@@ -1,0 +1,40 @@
+--- Running main.py (iteration 88) ---
+Przed balansowaniem: Counter({np.int64(0): 4140, np.int64(1): 1116})
+Bez oversamplingu: utrzymano oryginalny rozkład klas.
+
+=== Using: Custom DecisionTree ===
+
+Test performance:
+Accuracy:  0.79
+Precision: 0.00
+Recall:    0.00
+AUC:       0.50
+
+=== Classification report ===
+              precision    recall  f1-score   support
+
+           0      0.788     1.000     0.881       829
+           1      0.000     0.000     0.000       223
+
+    accuracy                          0.788      1052
+   macro avg      0.394     0.500     0.441      1052
+weighted avg      0.621     0.788     0.695      1052
+
+
+Tekstowa ilustracja drzewa decyzyjnego (custom):
+--- Evaluating regex performance ---
+
+100 regexów najczęściej dopasowanych dla klasy 1:
+
+regex 0:	.AG\nAAG.\nGAG.\nA.G\nAAGT\nAA.\n.AGT.C\nAAGG.A\nA[GA]GTGG\nAAGA.T\nAAGTTC\nAAGTTG\nAAGTGA\n[AGT]AG[AGT]AT\nA.GCTC\nAAGCTG\nA.GCAA\n.AGT.A\nGAGT[CA]T\nA.GTA.\nAAG.CA\nAAG.C.\nAAG.TG\n[AGC][AGT]GTTC\nAAGGC.\nAAG..G\n.AGTGG\nAA.T\nAAGG.C\nGAGT.C\nGA.TG.\n.AGTTC\nA.GC.C\nGAGT.A\nAAG.GG\nGA.T..\nAAG..T\n.A.TAG\nAAGAG.\nGAGTCT\n.AGTC.\nA.G.A\nAA.TGT\nA[GCA]GTA[CTA]\nGA.\nG[CA][AGT]T\nA.GT.G\nAAGGC[TC]\n[GC][CA]GTC\nAGG[CTA]AC\nA.G.AT\nAAG.TT\n.AG.GA\nA.GTG.\nG.G\nA.GGCC\nAA.GAT\nG.GTTC\n[AC]A[TG]T[CA]C\n.A.TGG\n.A.TAC\nAAA.TA\n[AT]AGAGA\nAA..AG\nAA..GG\nA..TAC\nAA.TTC\nATGT..\nA.G.AG\n.AGC.C\nA.GCG.\n.AG.GG\nGA[CG]TTT\nGAGCAC\nAA..TA\nGAG.TC\nGA[GCT][AT][TGC][TG]\nGAGGGC\nAAGAAA\nA.G..T\nGAG.TT\n[GC]AG[CT]C[TGC]\nA.GCA.\n[CA][TA][TG]\nGA..GC\nAA.AGC\nAGG.AC\nA.GC\n..GTCC\n.AG.TT\n.AGC\nAA[TG]G[CAT]T\n[CTG][ACG]GTGA\nAA..TG\nA.G.CG\n.GGTCC\nA[ACG]GCT[GA]\nA.G.GC\n	0
+
+100 regexów najczęściej dopasowanych dla klasy 0:
+
+regex 0:	.AG\nAAG.\nGAG.\nA.G\nAAGT\nAA.\n.AGT.C\nAAGG.A\nA[GA]GTGG\nAAGA.T\nAAGTTC\nAAGTTG\nAAGTGA\n[AGT]AG[AGT]AT\nA.GCTC\nAAGCTG\nA.GCAA\n.AGT.A\nGAGT[CA]T\nA.GTA.\nAAG.CA\nAAG.C.\nAAG.TG\n[AGC][AGT]GTTC\nAAGGC.\nAAG..G\n.AGTGG\nAA.T\nAAGG.C\nGAGT.C\nGA.TG.\n.AGTTC\nA.GC.C\nGAGT.A\nAAG.GG\nGA.T..\nAAG..T\n.A.TAG\nAAGAG.\nGAGTCT\n.AGTC.\nA.G.A\nAA.TGT\nA[GCA]GTA[CTA]\nGA.\nG[CA][AGT]T\nA.GT.G\nAAGGC[TC]\n[GC][CA]GTC\nAGG[CTA]AC\nA.G.AT\nAAG.TT\n.AG.GA\nA.GTG.\nG.G\nA.GGCC\nAA.GAT\nG.GTTC\n[AC]A[TG]T[CA]C\n.A.TGG\n.A.TAC\nAAA.TA\n[AT]AGAGA\nAA..AG\nAA..GG\nA..TAC\nAA.TTC\nATGT..\nA.G.AG\n.AGC.C\nA.GCG.\n.AG.GG\nGA[CG]TTT\nGAGCAC\nAA..TA\nGAG.TC\nGA[GCT][AT][TGC][TG]\nGAGGGC\nAAGAAA\nA.G..T\nGAG.TT\n[GC]AG[CT]C[TGC]\nA.GCA.\n[CA][TA][TG]\nGA..GC\nAA.AGC\nAGG.AC\nA.GC\n..GTCC\n.AG.TT\n.AGC\nAA[TG]G[CAT]T\n[CTG][ACG]GTGA\nAA..TG\nA.G.CG\n.GGTCC\nA[ACG]GCT[GA]\nA.G.GC\n	0
+
+100 regexów z największą łączną liczbą dopasowań (klasa 1 + 0):
+
+regex 0:	.AG\nAAG.\nGAG.\nA.G\nAAGT\nAA.\n.AGT.C\nAAGG.A\nA[GA]GTGG\nAAGA.T\nAAGTTC\nAAGTTG\nAAGTGA\n[AGT]AG[AGT]AT\nA.GCTC\nAAGCTG\nA.GCAA\n.AGT.A\nGAGT[CA]T\nA.GTA.\nAAG.CA\nAAG.C.\nAAG.TG\n[AGC][AGT]GTTC\nAAGGC.\nAAG..G\n.AGTGG\nAA.T\nAAGG.C\nGAGT.C\nGA.TG.\n.AGTTC\nA.GC.C\nGAGT.A\nAAG.GG\nGA.T..\nAAG..T\n.A.TAG\nAAGAG.\nGAGTCT\n.AGTC.\nA.G.A\nAA.TGT\nA[GCA]GTA[CTA]\nGA.\nG[CA][AGT]T\nA.GT.G\nAAGGC[TC]\n[GC][CA]GTC\nAGG[CTA]AC\nA.G.AT\nAAG.TT\n.AG.GA\nA.GTG.\nG.G\nA.GGCC\nAA.GAT\nG.GTTC\n[AC]A[TG]T[CA]C\n.A.TGG\n.A.TAC\nAAA.TA\n[AT]AGAGA\nAA..AG\nAA..GG\nA..TAC\nAA.TTC\nATGT..\nA.G.AG\n.AGC.C\nA.GCG.\n.AG.GG\nGA[CG]TTT\nGAGCAC\nAA..TA\nGAG.TC\nGA[GCT][AT][TGC][TG]\nGAGGGC\nAAGAAA\nA.G..T\nGAG.TT\n[GC]AG[CT]C[TGC]\nA.GCA.\n[CA][TA][TG]\nGA..GC\nAA.AGC\nAGG.AC\nA.GC\n..GTCC\n.AG.TT\n.AGC\nAA[TG]G[CAT]T\n[CTG][ACG]GTGA\nAA..TG\nA.G.CG\n.GGTCC\nA[ACG]GCT[GA]\nA.G.GC\n	klasa 1: 0	klasa 0: 0	razem: 0
+--- Selecting top regexes ---
+Adding 10 new regexes from index 870
+Saved 10 regexes to input_data/regex_donor.txt

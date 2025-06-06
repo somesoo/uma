@@ -1,0 +1,75 @@
+--- Running main.py (iteration 22) ---
+Class distribution: Counter({np.int64(0): 4672, np.int64(1): 1116})
+
+=== Using: Custom DecisionTree ===
+
+Test performance:
+Accuracy:  0.808
+Precision: 0.571
+Recall:    0.018
+AUC:       0.507
+
+=== Classification report ===
+              precision    recall  f1-score   support
+
+           0      0.810     0.997     0.894       935
+           1      0.571     0.018     0.035       223
+
+    accuracy                          0.808      1158
+   macro avg      0.691     0.507     0.464      1158
+weighted avg      0.764     0.808     0.728      1158
+
+
+Text illustration of decision tree (custom):
+--- Evaluating regex performance ---
+
+100 regexów najczęściej dopasowanych dla klasy 1:
+
+regex 0:	GTA...	46
+regex 1:	CGGGGCT..TAAT	0
+regex 2:	CG.GGA.C.GTAT	0
+regex 3:	.GT.TGCAT.CGT	0
+regex 4:	TCGAC.AGCG.TC	0
+regex 5:	.G.CTACAATAAA	0
+regex 6:	AGCTCCGGTATTC	0
+regex 7:	TC.A.GTAGACGT	0
+regex 8:	TCATCGTT..GG.	0
+regex 9:	CA.ACCACC..TT	0
+regex 10:	AAAC.ACC.GAG.	0
+regex 11:	AGATCG..TCCC.	0
+regex 12:	ATTA.AGCATAGG	0
+
+100 regexów najczęściej dopasowanych dla klasy 0:
+
+regex 0:	GTA...	28
+regex 1:	CGGGGCT..TAAT	0
+regex 2:	CG.GGA.C.GTAT	0
+regex 3:	.GT.TGCAT.CGT	0
+regex 4:	TCGAC.AGCG.TC	0
+regex 5:	.G.CTACAATAAA	0
+regex 6:	AGCTCCGGTATTC	0
+regex 7:	TC.A.GTAGACGT	0
+regex 8:	TCATCGTT..GG.	0
+regex 9:	CA.ACCACC..TT	0
+regex 10:	AAAC.ACC.GAG.	0
+regex 11:	AGATCG..TCCC.	0
+regex 12:	ATTA.AGCATAGG	0
+
+100 regexów z największą łączną liczbą dopasowań (klasa 1 + 0):
+
+regex 0:	GTA...	klasa 1: 46	klasa 0: 28	razem: 74
+regex 1:	CGGGGCT..TAAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 2:	CG.GGA.C.GTAT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 3:	.GT.TGCAT.CGT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 4:	TCGAC.AGCG.TC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 5:	.G.CTACAATAAA	klasa 1: 0	klasa 0: 0	razem: 0
+regex 6:	AGCTCCGGTATTC	klasa 1: 0	klasa 0: 0	razem: 0
+regex 7:	TC.A.GTAGACGT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 8:	TCATCGTT..GG.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 9:	CA.ACCACC..TT	klasa 1: 0	klasa 0: 0	razem: 0
+regex 10:	AAAC.ACC.GAG.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 11:	AGATCG..TCCC.	klasa 1: 0	klasa 0: 0	razem: 0
+regex 12:	ATTA.AGCATAGG	klasa 1: 0	klasa 0: 0	razem: 0
+--- Selecting top regexes ---
+Adding 10 new regexes from index 5320
+Saved 12 regexes to input_data/regex_acceptor.txt
