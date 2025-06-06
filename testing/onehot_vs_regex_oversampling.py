@@ -41,7 +41,7 @@ def compare_onehot_vs_regex():
         # 1. Załaduj dane i wyciągnij features
         regexes = load_regex_patterns(regex_paths[data_type])
         regex_len = len(regexes[1])
-        examples = load_dna_with_window(data_paths[data_type], data_type, regex_len)
+        examples = load_dna_with_window(data_paths[data_type], data_type)
 
         if feature_type == "regex":
             X, y = extract_features_full(examples, regexes)

@@ -17,7 +17,7 @@ def tune_hyperparameters(
     max_depths: list[int],
     min_samples_list: list[int],
     test_size: float = 0.2,
-    random_state: int = 42,
+    random_state: int = 12,
     n_repeats: int = 5
 ):
     if data_label.lower() == "acceptor":
@@ -78,10 +78,10 @@ def tune_hyperparameters(
     results.sort(key=lambda x: (x[4], x[2]), reverse=True)
 
     print(f"\nBEST for {data_label} → max_depth={results[0][0]}, min_samples={results[0][1]}, Recall={results[0][4]:.2f}, F1={results[0][5]:.2f}\n")
-#    print("ALL results:")
-#    for res in results:
-#        md, ms, acc, prec, rec, f1, tp, fp, tn, fn = res
-#        print(f"depth={md:2d}, min_samp={ms:2d} → acc={acc:.2f}, prec={prec:.2f}, rec={rec:.2f}, f1={f1:.2f}")
+    print("ALL results:")
+    for res in results:
+        md, ms, acc, prec, rec, f1, tp, fp, tn, fn = res
+        print(f"depth={md:2d}, min_samp={ms:2d} → acc={acc:.2f}, prec={prec:.2f}, rec={rec:.2f}, f1={f1:.2f}")
 
 if __name__ == "__main__":
     

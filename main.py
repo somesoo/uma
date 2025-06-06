@@ -27,7 +27,7 @@ def parse_args():
                         help="Path to the regex patterns file")
     parser.add_argument("--window_size", type=int, default=3,
                         help="Window size for extracting DNA sequence")
-    parser.add_argument("--max_depth", type=int, default=25,
+    parser.add_argument("--max_depth", type=int, default=30,
                         help="Maximum depth of the decision tree")
     parser.add_argument("--min_samples", type=int, default=2,
                         help="Minimum number of samples to split (for custom implementation)")

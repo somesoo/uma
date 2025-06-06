@@ -76,3 +76,6 @@ if __name__ == "__main__":
     compare_models(
         data_label = "acceptor",
     )
+    compare_models(
+        data_label = "donor",
+    )
