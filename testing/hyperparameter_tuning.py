@@ -96,6 +96,6 @@ if __name__ == "__main__":
             max_depths       = [3, 5, 10, 15, 20, 30],
             min_samples_list = [2, 5, 10, 20, 30],
             test_size        = 0.2,
-            random_state     = 42,
+            random_state     = 12,
             n_repeats        = 10
         )

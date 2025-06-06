@@ -3,12 +3,16 @@
 import pandas as pd
 import re
 
+
+def canonicalize_regex(r):
+    return re.sub(r"[.]+$", "", r)
+
+
 def pretty_name(col: str) -> str:
-    """Zwraca sformatowaną nazwę regexu z numerem i wzorcem"""
     match = re.match(r"rx_(\d+)_(.+)", col)
     if match:
         return f"regex {match.group(1)}:\t{match.group(2)}"
-    return col  # fallback
+    return col 
 
 def analyze_feature_matches(csv_path: str, top_n: int = 100) -> None:
     # Wczytaj dane
@@ -51,7 +55,14 @@ def export_regex_scores(csv_path: str, output_path: str = "scores.tsv") -> None:
         "matches_class0": matches_0.values,
         "total": total_matches.values
     })
-    scores_df.to_csv(output_path, sep="\t", index=False)
+    scores_df["canonical"] = scores_df["regex"].apply(canonicalize_regex)
+    scores_df["length"] = scores_df["regex"].str.len()
+
+    scores_df = scores_df.sort_values(by=["canonical", "length"])
+    scores_df = scores_df.drop_duplicates("canonical")
+
+    scores_df.drop(columns=["canonical", "length"]).to_csv(output_path, sep="\t", index=False)
+
 
 if __name__ == "__main__":
     analyze_feature_matches("features.csv")

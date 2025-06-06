@@ -1,6 +1,7 @@
 ### Jonatan Kasperczak
 
 import pandas as pd
+import re
 
 TOP_K = 100
 BATCH_SIZE = 10
@@ -8,6 +9,9 @@ SCORES_FILE = "scores.tsv"
 POOL_FILE = "regex_pool.txt"
 OUTPUT_FILE = "input_data/regex_donor.txt"
 STATE_FILE = "regex_selection_state.txt"  # śledzenie pozycji w puli
+
+def canonicalize_regex(r):
+    return re.sub(r"[.]+$", "", r)
 
 def load_used_regexes():
     try:
@@ -57,12 +61,17 @@ def main():
     print(f"Adding {BATCH_SIZE} new regexes from index {start_index}")
 
     # 3. Zbuduj nowy zbiór
-    selected_patterns = [r.split("_", 2)[-1] for r in top_regexes]  # tylko wzorzec
+    selected_patterns = [r.split("_", 2)[-1] for r in top_regexes]
     updated_patterns = selected_patterns + new_batch
 
+    unique_patterns = {}
+    for regex in selected_patterns:
+        canon = canonicalize_regex(regex)
+        if canon not in unique_patterns:
+            unique_patterns[canon] = regex
     with open(OUTPUT_FILE, "w") as f:
-        for regex in updated_patterns:
-            f.write(regex + "\n")
+        for r in unique_patterns.values():
+            f.write(r + "\n")
 
     print(f"Saved {len(updated_patterns)} regexes to {OUTPUT_FILE}")
 

@@ -89,14 +89,14 @@ def extract_one_hot_features(examples):
 
 def evaluate(model, X_test, y_test):
     y_pred = model.predict(X_test)
-    print(f"Accuracy:  {accuracy_score(y_test, y_pred):.3f}")
-    print(f"Precision: {precision_score(y_test, y_pred, zero_division=0):.3f}")
-    print(f"Recall:    {recall_score(y_test, y_pred, zero_division=0):.3f}")
+    print(f"Accuracy:  {accuracy_score(y_test, y_pred):.2f}")
+    print(f"Precision: {precision_score(y_test, y_pred, zero_division=0):.2f}")
+    print(f"Recall:    {recall_score(y_test, y_pred, zero_division=0):.2f}")
     try:
         y_proba = model.predict_proba(X_test)[:, 1]
         fpr, tpr, _ = roc_curve(y_test, y_proba)
-        print(f"AUC:       {auc(fpr, tpr):.3f}")
-        plt.plot(fpr, tpr, label=f"AUC = {auc(fpr, tpr):.3f}")
+        print(f"AUC:       {auc(fpr, tpr):.2f}")
+        plt.plot(fpr, tpr, label=f"AUC = {auc(fpr, tpr):.2f}")
         plt.plot([0, 1], [0, 1], 'k--')
         plt.xlabel("FPR"); plt.ylabel("TPR"); plt.legend(loc="lower right")
 #        plt.show()
