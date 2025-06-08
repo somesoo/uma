@@ -1,0 +1,336 @@
+--- Running main.py (iteration 40) ---
+Class distribution: Counter({np.int64(0): 4672, np.int64(1): 1116})
+
+=== Using: Custom DecisionTree ===
+
+Test performance:
+Accuracy:  0.808
+Precision: 0.522
+Recall:    0.054
+AUC:       0.617
+
+=== Classification report ===
+              precision    recall  f1-score   support
+
+           0      0.814     0.988     0.893       935
+           1      0.522     0.054     0.098       223
+
+    accuracy                          0.808      1158
+   macro avg      0.668     0.521     0.495      1158
+weighted avg      0.758     0.808     0.740      1158
+
+
+Text illustration of decision tree (custom):
+--- Evaluating regex performance ---
+
+100 regexów najczęściej dopasowanych dla klasy 1:
+
+regex 100:	[CAG][TG][AC][TAC]	215
+regex 87:	[AG]TG[GAC]	84
+regex 75:	[CTG][CT][AGT]A	82
+regex 76:	G[AGT][TCG]C	80
+regex 34:	[CA][ACG]A[TAC]	78
+regex 55:	[GCA]C[ACG][GT]	71
+regex 1:	.CT	67
+regex 47:	[CA][CGA]T[GCT]	62
+regex 86:	GA.A	50
+regex 0:	GTA...	46
+regex 96:	G.AT	44
+regex 73:	[CTA][CA]T[CT]	44
+regex 69:	GA.G	43
+regex 72:	GAG.	38
+regex 7:	GAT.	37
+regex 10:	G.AC	36
+regex 50:	GCA.	34
+regex 23:	GCT.	33
+regex 68:	GGA.	31
+regex 42:	[TG][AG]TG	31
+regex 13:	G[CA][AGT]T	28
+regex 80:	GGT.	28
+regex 83:	.TGT	27
+regex 54:	.CCC	26
+regex 12:	AA.T	25
+regex 29:	.GCT	25
+regex 90:	[CAG]TT[AT]	25
+regex 19:	CT.C	23
+regex 16:	G.TT	23
+regex 85:	[TCA]C[CA]A	22
+regex 94:	.TTG	21
+regex 18:	.TCT	21
+regex 67:	GC.T	21
+regex 41:	.TAC	20
+regex 37:	.AGG	20
+regex 82:	.AAC	19
+regex 64:	G[CG]AG	18
+regex 61:	GC[CAT]A	18
+regex 5:	GGC[CG]	16
+regex 57:	AAC.	16
+regex 20:	AGA.	16
+regex 21:	ATT.	16
+regex 27:	GGCT	16
+regex 14:	C.CC	15
+regex 71:	.ATC	15
+regex 84:	.GTG	15
+regex 58:	A.GC	14
+regex 15:	AC.G	14
+regex 8:	CAC.	12
+regex 33:	TGG.	12
+regex 30:	CT.T	12
+regex 81:	AAG.	12
+regex 93:	GGAT	10
+regex 24:	AAC[AT]	10
+regex 97:	CC.C	9
+regex 43:	C.GT	9
+regex 51:	CA.A	8
+regex 53:	T.AT	8
+regex 74:	GGGA	8
+regex 88:	.TAG	8
+regex 31:	C.TT	8
+regex 101:	.GTT	8
+regex 3:	CGA.	8
+regex 59:	CTTC	7
+regex 92:	T.AA	7
+regex 6:	CCT.	7
+regex 22:	TTC.	7
+regex 70:	.ACG	7
+regex 9:	TGCC	6
+regex 32:	.GGG	6
+regex 39:	ACG.	6
+regex 56:	GGAC	6
+regex 65:	AACT	6
+regex 98:	T.TA	5
+regex 40:	ACAA	5
+regex 60:	.GTA	5
+regex 38:	TA.T	4
+regex 48:	TAC.	4
+regex 66:	TTA[CTG]	4
+regex 25:	TCC.	3
+regex 45:	CG[TC][CTG]	3
+regex 77:	TTGA	3
+regex 63:	TTCA	3
+regex 44:	AGGG	2
+regex 36:	ACGG	2
+regex 35:	CGAC	2
+regex 99:	CCGA	2
+regex 52:	CGAG	2
+regex 79:	CGCC	1
+regex 46:	GCTT	1
+regex 2:	CGGC	1
+regex 28:	CAGA	1
+regex 49:	TTAG	1
+regex 78:	CCGG	1
+regex 89:	TAAA	1
+regex 17:	CTAA	0
+regex 11:	TAAT	0
+regex 4:	TCCT	0
+regex 26:	ATAT	0
+regex 62:	CATA	0
+
+100 regexów najczęściej dopasowanych dla klasy 0:
+
+regex 100:	[CAG][TG][AC][TAC]	612
+regex 34:	[CA][ACG]A[TAC]	369
+regex 47:	[CA][CGA]T[GCT]	357
+regex 55:	[GCA]C[ACG][GT]	352
+regex 1:	.CT	345
+regex 75:	[CTG][CT][AGT]A	273
+regex 73:	[CTA][CA]T[CT]	242
+regex 76:	G[AGT][TCG]C	197
+regex 81:	AAG.	196
+regex 72:	GAG.	164
+regex 85:	[TCA]C[CA]A	162
+regex 87:	[AG]TG[GAC]	155
+regex 97:	CC.C	141
+regex 69:	GA.G	133
+regex 37:	.AGG	132
+regex 54:	.CCC	129
+regex 86:	GA.A	126
+regex 6:	CCT.	125
+regex 14:	C.CC	108
+regex 19:	CT.C	101
+regex 12:	AA.T	101
+regex 30:	CT.T	97
+regex 29:	.GCT	96
+regex 58:	A.GC	96
+regex 18:	.TCT	93
+regex 23:	GCT.	91
+regex 57:	AAC.	89
+regex 42:	[TG][AG]TG	82
+regex 90:	[CAG]TT[AT]	77
+regex 51:	CA.A	77
+regex 31:	C.TT	76
+regex 20:	AGA.	76
+regex 33:	TGG.	76
+regex 84:	.GTG	75
+regex 68:	GGA.	74
+regex 7:	GAT.	73
+regex 22:	TTC.	71
+regex 82:	.AAC	68
+regex 50:	GCA.	67
+regex 67:	GC.T	67
+regex 71:	.ATC	66
+regex 43:	C.GT	66
+regex 83:	.TGT	65
+regex 13:	G[CA][AGT]T	65
+regex 15:	AC.G	64
+regex 10:	G.AC	60
+regex 25:	TCC.	59
+regex 94:	.TTG	58
+regex 92:	T.AA	57
+regex 8:	CAC.	56
+regex 53:	T.AT	56
+regex 32:	.GGG	54
+regex 45:	CG[TC][CTG]	52
+regex 21:	ATT.	51
+regex 48:	TAC.	50
+regex 24:	AAC[AT]	49
+regex 61:	GC[CAT]A	48
+regex 64:	G[CG]AG	44
+regex 101:	.GTT	42
+regex 16:	G.TT	41
+regex 38:	TA.T	41
+regex 98:	T.TA	37
+regex 70:	.ACG	36
+regex 96:	G.AT	36
+regex 80:	GGT.	34
+regex 5:	GGC[CG]	33
+regex 41:	.TAC	32
+regex 39:	ACG.	32
+regex 28:	CAGA	30
+regex 27:	GGCT	29
+regex 0:	GTA...	28
+regex 3:	CGA.	27
+regex 9:	TGCC	24
+regex 60:	.GTA	23
+regex 4:	TCCT	22
+regex 65:	AACT	22
+regex 91:	TCG.	21
+regex 40:	ACAA	20
+regex 88:	.TAG	20
+regex 66:	TTA[CTG]	20
+regex 59:	CTTC	20
+regex 95:	TACC	19
+regex 2:	CGGC	19
+regex 56:	GGAC	17
+regex 17:	CTAA	16
+regex 93:	GGAT	16
+regex 63:	TTCA	16
+regex 46:	GCTT	15
+regex 89:	TAAA	15
+regex 77:	TTGA	15
+regex 44:	AGGG	14
+regex 74:	GGGA	13
+regex 36:	ACGG	13
+regex 11:	TAAT	12
+regex 79:	CGCC	11
+regex 26:	ATAT	11
+regex 52:	CGAG	11
+regex 78:	CCGG	11
+regex 99:	CCGA	10
+regex 62:	CATA	8
+
+100 regexów z największą łączną liczbą dopasowań (klasa 1 + 0):
+
+regex 100:	[CAG][TG][AC][TAC]	klasa 1: 215	klasa 0: 612	razem: 827
+regex 34:	[CA][ACG]A[TAC]	klasa 1: 78	klasa 0: 369	razem: 447
+regex 55:	[GCA]C[ACG][GT]	klasa 1: 71	klasa 0: 352	razem: 423
+regex 47:	[CA][CGA]T[GCT]	klasa 1: 62	klasa 0: 357	razem: 419
+regex 1:	.CT	klasa 1: 67	klasa 0: 345	razem: 412
+regex 75:	[CTG][CT][AGT]A	klasa 1: 82	klasa 0: 273	razem: 355
+regex 73:	[CTA][CA]T[CT]	klasa 1: 44	klasa 0: 242	razem: 286
+regex 76:	G[AGT][TCG]C	klasa 1: 80	klasa 0: 197	razem: 277
+regex 87:	[AG]TG[GAC]	klasa 1: 84	klasa 0: 155	razem: 239
+regex 81:	AAG.	klasa 1: 12	klasa 0: 196	razem: 208
+regex 72:	GAG.	klasa 1: 38	klasa 0: 164	razem: 202
+regex 85:	[TCA]C[CA]A	klasa 1: 22	klasa 0: 162	razem: 184
+regex 86:	GA.A	klasa 1: 50	klasa 0: 126	razem: 176
+regex 69:	GA.G	klasa 1: 43	klasa 0: 133	razem: 176
+regex 54:	.CCC	klasa 1: 26	klasa 0: 129	razem: 155
+regex 37:	.AGG	klasa 1: 20	klasa 0: 132	razem: 152
+regex 97:	CC.C	klasa 1: 9	klasa 0: 141	razem: 150
+regex 6:	CCT.	klasa 1: 7	klasa 0: 125	razem: 132
+regex 12:	AA.T	klasa 1: 25	klasa 0: 101	razem: 126
+regex 19:	CT.C	klasa 1: 23	klasa 0: 101	razem: 124
+regex 23:	GCT.	klasa 1: 33	klasa 0: 91	razem: 124
+regex 14:	C.CC	klasa 1: 15	klasa 0: 108	razem: 123
+regex 29:	.GCT	klasa 1: 25	klasa 0: 96	razem: 121
+regex 18:	.TCT	klasa 1: 21	klasa 0: 93	razem: 114
+regex 42:	[TG][AG]TG	klasa 1: 31	klasa 0: 82	razem: 113
+regex 58:	A.GC	klasa 1: 14	klasa 0: 96	razem: 110
+regex 7:	GAT.	klasa 1: 37	klasa 0: 73	razem: 110
+regex 30:	CT.T	klasa 1: 12	klasa 0: 97	razem: 109
+regex 68:	GGA.	klasa 1: 31	klasa 0: 74	razem: 105
+regex 57:	AAC.	klasa 1: 16	klasa 0: 89	razem: 105
+regex 90:	[CAG]TT[AT]	klasa 1: 25	klasa 0: 77	razem: 102
+regex 50:	GCA.	klasa 1: 34	klasa 0: 67	razem: 101
+regex 10:	G.AC	klasa 1: 36	klasa 0: 60	razem: 96
+regex 13:	G[CA][AGT]T	klasa 1: 28	klasa 0: 65	razem: 93
+regex 20:	AGA.	klasa 1: 16	klasa 0: 76	razem: 92
+regex 83:	.TGT	klasa 1: 27	klasa 0: 65	razem: 92
+regex 84:	.GTG	klasa 1: 15	klasa 0: 75	razem: 90
+regex 33:	TGG.	klasa 1: 12	klasa 0: 76	razem: 88
+regex 67:	GC.T	klasa 1: 21	klasa 0: 67	razem: 88
+regex 82:	.AAC	klasa 1: 19	klasa 0: 68	razem: 87
+regex 51:	CA.A	klasa 1: 8	klasa 0: 77	razem: 85
+regex 31:	C.TT	klasa 1: 8	klasa 0: 76	razem: 84
+regex 71:	.ATC	klasa 1: 15	klasa 0: 66	razem: 81
+regex 96:	G.AT	klasa 1: 44	klasa 0: 36	razem: 80
+regex 94:	.TTG	klasa 1: 21	klasa 0: 58	razem: 79
+regex 15:	AC.G	klasa 1: 14	klasa 0: 64	razem: 78
+regex 22:	TTC.	klasa 1: 7	klasa 0: 71	razem: 78
+regex 43:	C.GT	klasa 1: 9	klasa 0: 66	razem: 75
+regex 0:	GTA...	klasa 1: 46	klasa 0: 28	razem: 74
+regex 8:	CAC.	klasa 1: 12	klasa 0: 56	razem: 68
+regex 21:	ATT.	klasa 1: 16	klasa 0: 51	razem: 67
+regex 61:	GC[CAT]A	klasa 1: 18	klasa 0: 48	razem: 66
+regex 92:	T.AA	klasa 1: 7	klasa 0: 57	razem: 64
+regex 16:	G.TT	klasa 1: 23	klasa 0: 41	razem: 64
+regex 53:	T.AT	klasa 1: 8	klasa 0: 56	razem: 64
+regex 80:	GGT.	klasa 1: 28	klasa 0: 34	razem: 62
+regex 25:	TCC.	klasa 1: 3	klasa 0: 59	razem: 62
+regex 64:	G[CG]AG	klasa 1: 18	klasa 0: 44	razem: 62
+regex 32:	.GGG	klasa 1: 6	klasa 0: 54	razem: 60
+regex 24:	AAC[AT]	klasa 1: 10	klasa 0: 49	razem: 59
+regex 45:	CG[TC][CTG]	klasa 1: 3	klasa 0: 52	razem: 55
+regex 48:	TAC.	klasa 1: 4	klasa 0: 50	razem: 54
+regex 41:	.TAC	klasa 1: 20	klasa 0: 32	razem: 52
+regex 101:	.GTT	klasa 1: 8	klasa 0: 42	razem: 50
+regex 5:	GGC[CG]	klasa 1: 16	klasa 0: 33	razem: 49
+regex 27:	GGCT	klasa 1: 16	klasa 0: 29	razem: 45
+regex 38:	TA.T	klasa 1: 4	klasa 0: 41	razem: 45
+regex 70:	.ACG	klasa 1: 7	klasa 0: 36	razem: 43
+regex 98:	T.TA	klasa 1: 5	klasa 0: 37	razem: 42
+regex 39:	ACG.	klasa 1: 6	klasa 0: 32	razem: 38
+regex 3:	CGA.	klasa 1: 8	klasa 0: 27	razem: 35
+regex 28:	CAGA	klasa 1: 1	klasa 0: 30	razem: 31
+regex 9:	TGCC	klasa 1: 6	klasa 0: 24	razem: 30
+regex 65:	AACT	klasa 1: 6	klasa 0: 22	razem: 28
+regex 88:	.TAG	klasa 1: 8	klasa 0: 20	razem: 28
+regex 60:	.GTA	klasa 1: 5	klasa 0: 23	razem: 28
+regex 59:	CTTC	klasa 1: 7	klasa 0: 20	razem: 27
+regex 93:	GGAT	klasa 1: 10	klasa 0: 16	razem: 26
+regex 40:	ACAA	klasa 1: 5	klasa 0: 20	razem: 25
+regex 66:	TTA[CTG]	klasa 1: 4	klasa 0: 20	razem: 24
+regex 56:	GGAC	klasa 1: 6	klasa 0: 17	razem: 23
+regex 4:	TCCT	klasa 1: 0	klasa 0: 22	razem: 22
+regex 91:	TCG.	klasa 1: 0	klasa 0: 21	razem: 21
+regex 74:	GGGA	klasa 1: 8	klasa 0: 13	razem: 21
+regex 2:	CGGC	klasa 1: 1	klasa 0: 19	razem: 20
+regex 95:	TACC	klasa 1: 0	klasa 0: 19	razem: 19
+regex 63:	TTCA	klasa 1: 3	klasa 0: 16	razem: 19
+regex 77:	TTGA	klasa 1: 3	klasa 0: 15	razem: 18
+regex 89:	TAAA	klasa 1: 1	klasa 0: 15	razem: 16
+regex 44:	AGGG	klasa 1: 2	klasa 0: 14	razem: 16
+regex 17:	CTAA	klasa 1: 0	klasa 0: 16	razem: 16
+regex 46:	GCTT	klasa 1: 1	klasa 0: 15	razem: 16
+regex 36:	ACGG	klasa 1: 2	klasa 0: 13	razem: 15
+regex 52:	CGAG	klasa 1: 2	klasa 0: 11	razem: 13
+regex 79:	CGCC	klasa 1: 1	klasa 0: 11	razem: 12
+regex 99:	CCGA	klasa 1: 2	klasa 0: 10	razem: 12
+regex 11:	TAAT	klasa 1: 0	klasa 0: 12	razem: 12
+regex 78:	CCGG	klasa 1: 1	klasa 0: 11	razem: 12
+regex 26:	ATAT	klasa 1: 0	klasa 0: 11	razem: 11
+regex 35:	CGAC	klasa 1: 2	klasa 0: 6	razem: 8
+--- Selecting top regexes ---
+Adding 100 new regexes from index 200
+Saved 102 regexes to input_data/regex_acceptor.txt

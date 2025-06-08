@@ -1,0 +1,27 @@
+--- Running main.py (iteration 480) ---
+Class distribution: Counter({np.int64(0): 4672, np.int64(1): 1116})
+
+=== Using: Custom DecisionTree ===
+
+Test performance:
+Accuracy:  0.809
+Precision: 0.516
+Recall:    0.143
+AUC:       0.609
+
+=== Classification report ===
+              precision    recall  f1-score   support
+
+           0      0.826     0.968     0.891       935
+           1      0.516     0.143     0.225       223
+
+    accuracy                          0.809      1158
+   macro avg      0.671     0.556     0.558      1158
+weighted avg      0.766     0.809     0.763      1158
+
+
+Text illustration of decision tree (custom):
+--- Evaluating regex performance ---
+--- Selecting top regexes ---
+Adding 10 new regexes from index 4790
+Saved 110 regexes to input_data/regex_acceptor.txt
